@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AP · Hard Techno Artist</title>
+<meta name="description" content="AP, hard techno desde Tarragona. MashAP nuevo cada viernes a las 20:00 en SoundCloud. Bookings para salas y festivales.">
+<meta name="theme-color" content="#08050F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#08050F; --night:#130A20; --uv:#9B4DFF; --horn:#E23BD6;
+  --chrome:#ECE8F4; --ash:#9A93AE; --line:rgba(236,232,244,.12);
+  --pad:clamp(20px,5vw,80px); --max:1320px;
+  --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--void);color:var(--chrome);font:400 1rem/1.6 var(--body);overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--horn);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+section{position:relative}
+.label{display:inline-flex;align-items:center;gap:10px;color:var(--ash);font-size:.85rem}
+.label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--horn);box-shadow:0 0 12px var(--horn)}
+.h2{font:700 clamp(2.4rem,6.5vw,5.6rem)/.95 var(--display);letter-spacing:-.035em;margin-top:18px}
+.lead{color:var(--ash);max-width:46ch;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font:700 .95rem/1 var(--body);background:var(--chrome);color:var(--void);transition:transform .1s ease-out,background .2s}
+.btn:active{transform:scale(.97)}
+.btn:hover{background:#fff}
+.btn.ghost{background:transparent;color:var(--chrome);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--chrome)}
+.btn.uv{background:var(--uv);color:#fff}
+.btn.uv:hover{background:#ad68ff}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:24px;padding:14px var(--pad);
+  background:rgba(8,5,15,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:-24px;height:24px;background:linear-gradient(rgba(8,5,15,.4),transparent);pointer-events:none}
+.nav .logo img{height:34px;width:auto;mix-blend-mode:screen}
+.nav ul{display:flex;gap:28px;list-style:none;margin-left:auto;font-weight:500;font-size:.92rem}
+.nav ul a{color:var(--ash);transition:color .15s}.nav ul a:hover{color:var(--chrome)}
+.bpm{display:flex;align-items:baseline;gap:6px;font:700 1.05rem/1 var(--display);font-variant-numeric:tabular-nums;min-width:96px;justify-content:flex-end}
+.bpm small{font:500 .7rem/1 var(--body);color:var(--ash)}
+.bpm .dot{width:8px;height:8px;border-radius:50%;background:var(--horn);align-self:center;animation:beat calc(60s / var(--bpm,150)) infinite}
+@keyframes beat{0%,100%{transform:scale(.6);opacity:.5}12%{transform:scale(1.25);opacity:1}}
+.nav .btn{padding:11px 18px;font-size:.88rem}
+@media (max-width:860px){.nav ul{display:none}.bpm{margin-left:auto}}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;align-items:end;overflow:hidden;padding:120px 0 48px}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+  radial-gradient(120% 80% at 70% 30%,transparent 30%,rgba(8,5,15,.85) 75%),
+  linear-gradient(180deg,rgba(8,5,15,.6) 0%,transparent 30%,rgba(8,5,15,.2) 55%,var(--void) 100%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero-top{display:flex;justify-content:space-between;gap:32px;align-items:flex-start;margin-bottom:clamp(40px,10vh,120px)}
+.about{max-width:30ch;font-size:1.05rem}
+.about .label{margin-bottom:12px}
+.word{font:900 clamp(4rem,15vw,14rem)/.9 var(--display);letter-spacing:-.06em;text-transform:uppercase;
+  background:linear-gradient(176deg,#fff 0%,#d9d3e8 30%,#6f6787 48%,#f4f0ff 52%,#b9b0cf 72%,#fff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(155,77,255,.35))}
+.word.r{text-align:right}
+.hero-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:28px;flex-wrap:wrap}
+.genres{color:var(--ash);font-size:.95rem;max-width:44ch}
+.release{width:min(340px,100%);padding:18px;border-radius:22px;background:rgba(19,10,32,.6);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 60px rgba(0,0,0,.45)}
+.release .top{display:flex;justify-content:space-between;color:var(--ash);font-size:.8rem}
+.release .pill{padding:3px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);color:var(--chrome)}
+.release h3{font:700 1.35rem/1.1 var(--display);letter-spacing:-.02em;margin:12px 0 4px}
+.release p{color:var(--ash);font-size:.88rem;margin-bottom:16px}
+.release .btn{width:100%;justify-content:center}
+@media (max-width:700px){.hero-top{flex-direction:column;margin-bottom:56px}.word{font-size:24vw}.word.r{text-align:left}}
+
+/* STREAMING */
+.stream{padding:clamp(80px,12vw,160px) 0 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:var(--night)}
+.card img,.card video{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover img,.card:hover video{transform:scale(1.04)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,15,.1) 40%,rgba(8,5,15,.92))}
+.card .in{position:absolute;inset:auto 0 0;z-index:1;padding:22px}
+.card .tag{position:absolute;top:16px;left:16px;z-index:1;padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:700;background:rgba(8,5,15,.6);backdrop-filter:blur(10px)}
+.card .tag i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--horn);margin-right:7px;vertical-align:middle}
+.card h3{font:700 1.3rem/1.1 var(--display);letter-spacing:-.02em}
+.card p{color:var(--ash);font-size:.88rem;margin-top:6px}
+@media (max-width:860px){.cards{grid-template-columns:1fr 1fr}.cards .card:last-child{display:none}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}.cards .card:last-child{display:block}}
+.marquee{margin-top:clamp(60px,8vw,110px);border-block:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:56px;padding:22px 0;animation:slide 32s linear infinite}
+.marquee span{font:500 1.15rem/1 var(--display);color:var(--ash)}
+.marquee span b{color:var(--horn);margin-right:56px;font-weight:400}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* NEW RELEASE */
+.feature{padding:clamp(90px,12vw,170px) 0;background:var(--night);overflow:hidden}
+.feature .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.feature .copy{text-align:center}
+.feature .copy .h2{font-size:clamp(2.6rem,6vw,5rem)}
+.feature .sub{color:var(--ash);margin:18px auto 30px;max-width:36ch}
+.feature .rule{width:64px;height:1px;background:var(--line);margin:22px auto}
+.stack{position:relative;aspect-ratio:1/1;max-width:520px;margin-left:auto;width:100%}
+.stack img{position:absolute;border-radius:20px;object-fit:cover;box-shadow:0 0 0 3px var(--uv),0 30px 80px rgba(155,77,255,.35)}
+.stack .a{inset:0 12% 12% 0;transform:rotate(-3deg)}
+.stack .b{width:46%;aspect-ratio:3/4;right:0;bottom:0;transform:rotate(4deg);box-shadow:0 0 0 3px var(--horn),0 30px 60px rgba(0,0,0,.5)}
+.stack figcaption{position:absolute;left:0;bottom:-36px;color:var(--ash);font-size:.82rem}
+@media (max-width:860px){.feature .grid{grid-template-columns:1fr}.stack{margin:0 auto 40px}}
+
+/* ALL MASHAPS */
+.music{padding:clamp(90px,12vw,170px) 0}
+.row{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:clamp(20px,4vw,56px);padding:34px 0;border-bottom:1px solid var(--line);align-items:start}
+.row:first-of-type{border-top:1px solid var(--line)}
+.row .t{font:700 clamp(1.5rem,3vw,2.4rem)/1.05 var(--display);letter-spacing:-.03em}
+.row .t small{display:block;font:500 .9rem/1.4 var(--body);color:var(--ash);letter-spacing:0;margin-top:10px}
+.row .cover{border-radius:18px;overflow:hidden;aspect-ratio:16/10;box-shadow:inset 0 0 0 1px var(--line)}
+.row .cover img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.row .d{color:var(--ash);font-size:.95rem}
+.row .d a{display:inline-block;margin-top:14px;color:var(--chrome);font-weight:700;border-bottom:1px solid var(--horn)}
+@media (max-width:860px){.row{grid-template-columns:1fr}.row .cover{max-width:520px}}
+
+/* PROCESS */
+.process{padding:clamp(90px,12vw,170px) 0;background:var(--night);overflow:hidden}
+.steps{position:relative;margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.steps svg{position:absolute;left:0;right:0;top:66px;width:100%;height:40px;overflow:visible}
+.step{position:relative;padding-top:120px}
+.step .n{position:absolute;top:0;font:900 3.6rem/1 var(--display);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(236,232,244,.35)}
+.step:last-child .n{color:var(--horn);-webkit-text-stroke:0;text-shadow:0 0 30px rgba(226,59,214,.6)}
+.step h3{font:700 1.15rem/1.2 var(--display);margin-bottom:8px}
+.step p{color:var(--ash);font-size:.93rem;max-width:30ch}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:48px}.steps svg{display:none}.step{padding-top:70px}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* VIDEO */
+.vid{padding:clamp(90px,12vw,170px) 0;text-align:center;overflow:hidden}
+.vid .stage{position:relative;margin:56px auto 0;max-width:1100px;display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:20px;align-items:center}
+.vid .side{border-radius:20px;overflow:hidden;aspect-ratio:3/4;opacity:.7}
+.vid .side video{width:100%;height:100%;object-fit:cover}
+.vid .side.l{transform:translateY(40px) rotate(-3deg)}.vid .side.r{transform:translateY(-30px) rotate(3deg)}
+.player{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:#000;box-shadow:0 0 0 1px var(--line),0 40px 120px rgba(155,77,255,.3)}
+.player video{width:100%;height:100%;object-fit:cover}
+.player button{position:absolute;inset:0;border:0;background:linear-gradient(180deg,transparent 50%,rgba(8,5,15,.85));color:var(--chrome);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;padding:28px;font:inherit}
+.player .play{width:78px;height:78px;border-radius:50%;background:rgba(236,232,244,.92);display:grid;place-items:center;transition:transform .1s ease-out;position:absolute;top:50%;left:50%;translate:-50% -50%}
+.player button:active .play{transform:scale(.94)}
+.player .play svg{width:26px;margin-left:4px;fill:var(--void)}
+.player .cap{font-weight:700}.player .cap small{display:block;color:var(--ash);font-weight:500}
+.player.on button{display:none}
+@media (max-width:760px){.vid .stage{grid-template-columns:1fr}.vid .side{display:none}.player{max-width:420px;margin:0 auto}}
+
+/* DATES */
+.dates{padding:clamp(90px,12vw,170px) 0;background:var(--night)}
+.legend{display:grid;gap:6px;font-size:.88rem;color:var(--ash)}
+.legend h3{font:500 1.2rem/1.3 var(--body);color:var(--chrome);margin-bottom:6px}
+.legend span{display:flex;align-items:center;gap:10px}
+.m{width:9px;height:9px;border-radius:2px;flex:none}
+.m.fest{background:var(--horn)}.m.sala{background:var(--chrome)}.m.live{background:var(--uv)}
+.gig{display:grid;grid-template-columns:110px 1.4fr 1fr auto;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+.gig:first-of-type{border-top:1px solid var(--line)}
+.gig .when{font:700 1.5rem/1 var(--display);letter-spacing:-.03em}
+.gig .when small{display:block;font:500 .78rem/1.3 var(--body);color:var(--ash);letter-spacing:0;margin-top:6px}
+.gig h3{font:700 1.15rem/1.2 var(--display);display:flex;align-items:center;gap:12px}
+.gig .where{color:var(--ash);font-size:.93rem}
+.gig a.btn{padding:10px 16px;font-size:.85rem}
+.gig.next{border-bottom:0;margin-top:20px;padding:28px;border-radius:22px;background:linear-gradient(120deg,rgba(155,77,255,.22),rgba(226,59,214,.12));box-shadow:inset 0 0 0 1px rgba(155,77,255,.4)}
+@media (max-width:760px){.gig{grid-template-columns:1fr;gap:8px}.gig .when{font-size:1.1rem}.gig a.btn{justify-self:start;margin-top:6px}}
+
+/* PHOTOS */
+.photos{padding:clamp(90px,12vw,170px) 0}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(90px,9vw,130px);gap:16px;margin-top:48px}
+.gallery figure{position:relative;border-radius:18px;overflow:hidden;background:var(--night)}
+.gallery img{width:100%;height:100%;object-fit:cover}
+.gallery figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;font-size:.78rem;background:rgba(8,5,15,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.gallery figcaption b{font-weight:700;margin-right:6px}
+.g1{grid-column:1/6;grid-row:1/7}.g2{grid-column:6/9;grid-row:1/4}.g3{grid-column:9/13;grid-row:1/4}
+.g4{grid-column:6/9;grid-row:4/7}.g5{grid-column:9/13;grid-row:4/7}
+.g1 img{object-position:50% 30%}.g3 img{object-position:50% 20%}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.gallery figure{grid-column:auto!important;grid-row:span 2!important}.g1{grid-column:1/3!important;grid-row:span 3!important}}
+
+/* WORDS */
+.words{padding:clamp(90px,12vw,170px) 0;background:var(--night);overflow:hidden}
+.words .big{font:700 clamp(1.9rem,4.6vw,4rem)/1.08 var(--display);letter-spacing:-.035em;max-width:20ch;margin:30px 0 22px}
+.words .src{color:var(--ash);font-size:.95rem}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:70px}
+.quote{padding:26px;border-radius:22px;box-shadow:inset 0 0 0 1px var(--line)}
+.quote p{font-size:1.08rem;line-height:1.5}
+.quote span{display:block;margin-top:18px;color:var(--ash);font-size:.85rem}
+.played{margin-top:60px;color:var(--ash);font-size:.95rem}
+.played b{color:var(--chrome);font-weight:500}
+@media (max-width:860px){.quotes{grid-template-columns:1fr}}
+
+/* INK */
+.ink{padding:clamp(90px,12vw,170px) 0}
+.ink .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:center}
+.ink .pol{background:#f3f1ee;padding:14px 14px 56px;border-radius:6px;transform:rotate(-2.5deg);box-shadow:0 30px 80px rgba(0,0,0,.55);max-width:380px}
+.ink .pol img{aspect-ratio:4/5;object-fit:cover;width:100%}
+@media (max-width:760px){.ink .grid{grid-template-columns:1fr}.ink .pol{margin:0 auto}}
+
+/* DIARY */
+.diary{padding:clamp(90px,12vw,170px) 0;background:var(--night)}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.post{display:flex;flex-direction:column;border-radius:22px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s}
+.post:hover{box-shadow:inset 0 0 0 1px rgba(236,232,244,.4)}
+.post img{aspect-ratio:16/11;object-fit:cover;width:100%}
+.post .in{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.post .meta{color:var(--ash);font-size:.82rem}
+.post h3{font:700 1.15rem/1.2 var(--display);letter-spacing:-.02em}
+.post p{color:var(--ash);font-size:.93rem;flex:1}
+.post .more{font-weight:700;font-size:.9rem;border-bottom:1px solid var(--horn);align-self:flex-start}
+@media (max-width:860px){.posts{grid-template-columns:1fr}}
+
+/* BOOKING */
+.book{padding:clamp(90px,12vw,170px) 0 60px}
+.book .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
+.contacts{margin-top:40px;display:grid;gap:0}
+.contacts a{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line);font-size:1.05rem}
+.contacts a span{color:var(--ash)}
+.contacts a:hover b{color:var(--horn)}
+form{display:grid;gap:14px;padding:clamp(22px,3vw,34px);border-radius:26px;background:var(--night);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:.85rem;color:var(--ash)}
+input,select,textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(8,5,15,.6);color:var(--chrome);font:500 1rem/1.3 var(--body)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--uv);box-shadow:0 0 0 3px rgba(155,77,255,.25)}
+textarea{min-height:110px;resize:vertical}
+form .btn{justify-content:center;border:0;cursor:pointer;margin-top:6px}
+.hint{font-size:.82rem;color:var(--ash)}
+@media (max-width:860px){.book .grid{grid-template-columns:1fr}}
+@media (max-width:480px){form .two{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{padding:40px 0 30px;overflow:hidden}
+.end{font:900 clamp(5rem,26vw,24rem)/.8 var(--display);letter-spacing:-.07em;color:transparent;-webkit-text-stroke:1px rgba(236,232,244,.18);display:flex;align-items:flex-end;gap:.15em}
+.end small{font:500 .9rem/1.4 var(--body);-webkit-text-stroke:0;color:var(--ash);letter-spacing:0;padding-bottom:2.2vw;max-width:22ch}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:30px;padding-top:24px;border-top:1px solid var(--line);color:var(--ash);font-size:.88rem}
+.foot nav{display:flex;gap:22px}
+.foot a:hover{color:var(--chrome)}
+
+/* one entrance moment: hero */
+.hero .about,.hero .word,.hero-meta{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1)}
+.ready .hero .about{transition-delay:.1s}.ready .hero .word:nth-of-type(1){transition-delay:.2s}.ready .hero .word.r{transition-delay:.32s}.ready .hero-meta{transition-delay:.5s}
+.ready .hero .about,.ready .hero .word,.ready .hero-meta{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .hero .about,.hero .word,.hero-meta{opacity:1;transform:none;transition:none}
+  .marquee .track{flex-wrap:wrap;white-space:normal}
+}
+@media (prefers-reduced-transparency:reduce){.nav,.release,.card .tag,.gallery figcaption{background:var(--void);backdrop-filter:none;-webkit-backdrop-filter:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="AP, inicio"><img src="assets/logo-ap.webp" alt="AP" width="450" height="266"></a>
+  <ul>
+    <li><a href="#musica">Música</a></li>
+    <li><a href="#video">Vídeo</a></li>
+    <li><a href="#fechas">Fechas</a></li>
+    <li><a href="#diario">Diario</a></li>
+  </ul>
+  <div class="bpm" aria-label="Tempo de la página"><span class="dot"></span><span id="bpm">150</span><small>BPM</small></div>
+  <a class="btn uv" href="#bookings">Contratar</a>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <img class="poster" src="assets/hero-calavera.jpg" alt="">
+  <video autoplay muted loop playsinline preload="auto" poster="assets/hero-calavera.jpg" aria-hidden="true"><source src="assets/hero-calavera.mp4" type="video/mp4"></video>
+  <div class="wrap">
+    <div class="hero-top">
+      <p class="about"><span class="label">(Sobre mí)</span><br>Hard techno desde Tarragona. Bombo fuerte, presión constante y un MashAP nuevo cada viernes a las 20:00.</p>
+    </div>
+    <h1 class="word">Adrià</h1>
+    <p class="word r" aria-hidden="true">AP</p>
+    <div class="hero-meta">
+      <p class="genres">Hard techno, groove, hard bounce, schranz, industrial y hardpsy. Hasta la 240.</p>
+      <article class="release">
+        <div class="top"><span>Descarga gratis</span><span class="pill">MashAP</span></div>
+        <h3>Mi Estrella Blanca</h3>
+        <p>Hard techno, flamenco y trance en un mismo tema.</p>
+        <a class="btn" href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Escuchar en SoundCloud</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STREAMING -->
+<section class="stream" id="musica">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="label">(Cada viernes, 20:00)</span><h2 class="h2">Escúchame<br>donde quieras</h2></div>
+      <a class="btn ghost" href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">Todos los MashAP</a>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">
+        <span class="tag"><i></i>Nuevo cada viernes</span>
+        <img src="assets/poster-rayos.webp" alt="AP con gorra frente al logo cromado entre rayos violetas" loading="lazy">
+        <div class="in"><h3>MashAP</h3><p>Busca “MashAP” en SoundCloud y te salen todos.</p></div>
+      </a>
+      <a class="card" href="https://www.instagram.com/apt.tv_/" target="_blank" rel="noopener">
+        <span class="tag"><i></i>Stream</span>
+        <video autoplay muted loop playsinline preload="none" poster="assets/cabina-bn.jpg" aria-hidden="true"><source src="assets/cabina-bn.mp4" type="video/mp4"></video>
+        <div class="in"><h3>APT TV</h3><p>Primer invitado del canal. Track ID: Look AP Me Now.</p></div>
+      </a>
+      <a class="card" href="https://youtu.be/nF0jhbLRc_k" target="_blank" rel="noopener">
+        <span class="tag"><i></i>YouTube</span>
+        <img src="assets/feral-frontal.webp" alt="AP pinchando en Feral Fest con sombrero de leopardo" loading="lazy">
+        <div class="in"><h3>Sesiones en vídeo</h3><p>Sets grabados en cabina, de principio a fin.</p></div>
+      </a>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="track">
+    <span><b>●</b>SoundCloud</span><span><b>●</b>YouTube</span><span><b>●</b>Instagram</span><span><b>●</b>APT TV</span><span><b>●</b>MashAP cada viernes</span><span><b>●</b>Hard techno</span>
+    <span><b>●</b>SoundCloud</span><span><b>●</b>YouTube</span><span><b>●</b>Instagram</span><span><b>●</b>APT TV</span><span><b>●</b>MashAP cada viernes</span><span><b>●</b>Hard techno</span>
+  </div></div>
+</section>
+
+<!-- NEW RELEASE -->
+<section class="feature">
+  <div class="wrap grid">
+    <div class="copy">
+      <span class="label">(Lo último)</span>
+      <div class="rule"></div>
+      <p style="font:500 1.6rem/1 var(--display)">Volume I</p>
+      <h2 class="h2">Mash APT PT</h2>
+      <p class="sub">Una de las primeras veces que mezclo mi propia música entre sí. El diablo, qué fantasía.</p>
+      <div class="rule"></div>
+      <a class="btn" href="https://soundcloud.com/search?q=MashAP%20APT%20PT" target="_blank" rel="noopener">Escuchar ahora</a>
+    </div>
+    <figure class="stack">
+      <img class="a" src="assets/bcn-bn.webp" alt="AP en blanco y negro con el brazo en alto en una cabina de Barcelona" loading="lazy">
+      <img class="b" src="assets/feral-lateral.webp" alt="AP de perfil mezclando en Feral Fest" loading="lazy">
+      <figcaption>Barcelona y Feral Fest</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ALL MASHAPS -->
+<section class="music">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="label">(Temas y MashAPs)</span><h2 class="h2">Toda mi<br>música</h2></div>
+      <a class="btn ghost" href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">Abrir SoundCloud</a>
+    </div>
+    <article class="row">
+      <h3 class="t">Mi Estrella Blanca<small>Tema propio · descarga gratis</small></h3>
+      <div class="cover"><img src="assets/feral-frontal.webp" alt="" loading="lazy" style="object-position:50% 25%"></div>
+      <p class="d">Hard techno con flamenco y trance. De los que no sabías que se podían mezclar tan bien hasta que lo escuchas.<br><a href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Descargar gratis</a></p>
+    </article>
+    <article class="row">
+      <h3 class="t">Estoy Llorando Por Ti<small>MashAP · Feid × APT</small></h3>
+      <div class="cover"><img src="assets/feral-lateral.webp" alt="" loading="lazy" style="object-position:50% 30%"></div>
+      <p class="d">Estrenado en directo en Feral Fest, la primera vez que sonaron los MashAP delante de una pista.<br><a href="https://soundcloud.com/search?q=Estoy%20llorando%20por%20ti%20MashAP" target="_blank" rel="noopener">Escuchar</a></p>
+    </article>
+    <article class="row">
+      <h3 class="t">Damiandoscuarenta<small>Mi primer intento a 240</small></h3>
+      <div class="cover"><img src="assets/pista.jpg" alt="" loading="lazy"></div>
+      <p class="d">El primer tema en el que llego a la 240. Velocidad y trance puro.<br><a href="https://soundcloud.com/search?q=damiandoscuarenta" target="_blank" rel="noopener">Escuchar</a></p>
+    </article>
+    <article class="row">
+      <h3 class="t">My Only Girl<small>MashAP</small></h3>
+      <div class="cover"><img src="assets/poster-rayos.webp" alt="" loading="lazy" style="object-position:50% 35%"></div>
+      <p class="d">De los últimos MashAP que han salido. Bombo arriba y estribillo que se canta.<br><a href="https://soundcloud.com/search?q=My%20Only%20Girl%20MashAP" target="_blank" rel="noopener">Escuchar</a></p>
+    </article>
+    <article class="row">
+      <h3 class="t">Look AP Me Now<small>MashAP · sonó en APT TV</small></h3>
+      <div class="cover"><img src="assets/cabina-bn.jpg" alt="" loading="lazy"></div>
+      <p class="d">El track ID que más me preguntasteis después de ser el primer invitado de APT TV.<br><a href="https://soundcloud.com/search?q=Look%20AP%20Me%20Now" target="_blank" rel="noopener">Escuchar</a></p>
+    </article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="wrap">
+    <span class="label">(Cómo sube una sesión)</span>
+    <h2 class="h2">De groove<br>a 240</h2>
+    <div class="steps">
+      <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110 C 180 110, 220 80, 330 78 S 520 60, 600 50 S 820 30, 1000 4" fill="none" stroke="url(#gr)" stroke-width="2"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#9A93AE" stop-opacity=".3"/><stop offset="1" stop-color="#E23BD6"/></linearGradient></defs></svg>
+      <div class="step"><span class="n">1</span><h3>Groove</h3><p>Arranco con groove para que la pista entre y se suelte.</p></div>
+      <div class="step"><span class="n">2</span><h3>Presión</h3><p>Bombo firme y ritmo constante. Schranz e industrial, sin adornos.</p></div>
+      <div class="step"><span class="n">3</span><h3>Bounce</h3><p>Hard bounce para saltar. Aquí el after se convierte en deporte de riesgo.</p></div>
+      <div class="step"><span class="n">240</span><h3>Trance puro</h3><p>Velocidad máxima y un MashAP para cerrar. Si estabas ahí, sabes lo que pasó.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="vid" id="video">
+  <div class="wrap">
+    <span class="label">(Vídeo)</span>
+    <h2 class="h2">Así suena<br>en directo</h2>
+    <div class="stage">
+      <div class="side l"><video autoplay muted loop playsinline preload="none" poster="assets/hero-calavera.jpg" aria-hidden="true"><source src="assets/hero-calavera.mp4" type="video/mp4"></video></div>
+      <div class="player" id="player">
+        <video id="mainvid" playsinline preload="metadata" poster="assets/directo-history.jpg"><source src="assets/directo-history.mp4" type="video/mp4"></video>
+        <button type="button" aria-label="Reproducir vídeo con sonido">
+          <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>
+          <span class="cap">We Love History<small>Un minuto de pista, con sonido</small></span>
+        </button>
+      </div>
+      <div class="side r"><video autoplay muted loop playsinline preload="none" poster="assets/pista.jpg" aria-hidden="true"><source src="assets/pista.mp4" type="video/mp4"></video></div>
+    </div>
+  </div>
+</section>
+
+<!-- DATES -->
+<section class="dates" id="fechas">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="label">(Fechas)</span><h2 class="h2">Por dónde<br>he pasado</h2></div>
+      <div class="legend"><h3>Qué significa cada marca</h3>
+        <span><i class="m fest"></i>Festival</span><span><i class="m sala"></i>Sala o after</span><span><i class="m live"></i>Stream</span></div>
+    </div>
+    <div class="gig"><p class="when">12 h<small>Set 18:00–19:30</small></p><h3><i class="m fest"></i>Hard Experiences × Reaktor Group</h3><p class="where">Mi primer festival de 12 horas</p><a class="btn ghost" href="https://www.instagram.com/adriaap_/p/DekNqEmovEX/" target="_blank" rel="noopener">Ver</a></div>
+    <div class="gig"><p class="when">Feral<small>Festival</small></p><h3><i class="m fest"></i>Feral Fest</h3><p class="where">Primera vez sonando los MashAP en directo</p><a class="btn ghost" href="https://www.instagram.com/feral.fest/" target="_blank" rel="noopener">Ver</a></div>
+    <div class="gig"><p class="when">24 oct<small>Sala Zero</small></p><h3><i class="m sala"></i>We Love History</h3><p class="where">Tarragona</p><a class="btn ghost" href="https://www.instagram.com/welovehistoryy/" target="_blank" rel="noopener">Ver</a></div>
+    <div class="gig"><p class="when">3.ª ed.<small>After</small></p><h3><i class="m sala"></i>Belleville</h3><p class="where">Barcelona · hardtek bounce</p><a class="btn ghost" href="https://www.instagram.com/bellevilleafterbcn/" target="_blank" rel="noopener">Ver</a></div>
+    <div class="gig"><p class="when">APT<small>Primer invitado</small></p><h3><i class="m live"></i>APT TV</h3><p class="where">Stream en directo</p><a class="btn ghost" href="https://www.instagram.com/apt.tv_/" target="_blank" rel="noopener">Ver</a></div>
+    <div class="gig next"><p class="when">Tu fecha</p><h3>Tu sala o tu festival</h3><p class="where">Cuéntame la fecha y la ciudad y te respondo.</p><a class="btn" href="#bookings">Pedir fecha</a></div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos">
+  <div class="wrap">
+    <span class="label">(Fotos)</span>
+    <h2 class="h2">Desde la cabina</h2>
+    <div class="gallery">
+      <figure class="g1"><img src="assets/feral-frontal.webp" alt="AP de frente tras la mesa Pioneer en Feral Fest" loading="lazy"><figcaption><b>Feral Fest</b>Detrás de la Pioneer</figcaption></figure>
+      <figure class="g2"><img src="assets/polaroid.webp" alt="Retrato Polaroid de AP con sombrero negro" loading="lazy"><figcaption><b>Polaroid</b>Antes de salir</figcaption></figure>
+      <figure class="g3"><img src="assets/bcn-bn.webp" alt="AP en blanco y negro con el brazo en alto" loading="lazy"><figcaption><b>Barcelona</b>Brazo arriba</figcaption></figure>
+      <figure class="g4"><img src="assets/directo-history.jpg" alt="Pista llena bajo luces rojas en We Love History" loading="lazy"><figcaption><b>We Love History</b>La pista</figcaption></figure>
+      <figure class="g5"><img src="assets/feral-lateral.webp" alt="AP de perfil mezclando con sombrero de leopardo" loading="lazy" style="object-position:50% 35%"><figcaption><b>Feral Fest</b>En el mixer</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- WORDS -->
+<section class="words">
+  <div class="wrap">
+    <span class="label">(En mis palabras)</span>
+    <p class="big">Hard techno como herramienta de presión. Ritmo constante. Oscuridad controlada.</p>
+    <p class="src">AP, sobre su sonido</p>
+    <div class="quotes">
+      <div class="quote"><p>“Nada más que máquinas, bombo y conexión. Si estabas ahí, sabes lo que pasó.”</p><span>Después de We Love History</span></div>
+      <div class="quote"><p>“Por primera vez he puesto a sonar mis MashAP y habéis tenido una respuesta impresionante.”</p><span>Después de Feral Fest</span></div>
+      <div class="quote"><p>“No hay mejor sensación que conectar con el público y hacerlos disfrutar como nunca.”</p><span>Sobre pinchar</span></div>
+    </div>
+    <p class="played">También ha pinchado en <b>Revés</b>, donde empezó hace casi dos años, y en <b>Belleville</b>, <b>Sala Zero</b> y <b>Feral Fest</b>.</p>
+  </div>
+</section>
+
+<!-- INK -->
+<section class="ink">
+  <div class="wrap grid">
+    <div class="pol"><img src="assets/polaroid.webp" alt="AP con los tatuajes del cuello" loading="lazy"></div>
+    <div>
+      <span class="label">(Fuera de la cabina)</span>
+      <h2 class="h2">AP Tattoo Ink</h2>
+      <p class="lead" style="margin:22px 0 30px">Cuando no estoy con los auriculares, estoy con la máquina. Los cascos a un lado, la aguja al otro.</p>
+      <a class="btn ghost" href="https://www.instagram.com/aptattooink_/" target="_blank" rel="noopener">Ver tatuajes en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIARY -->
+<section class="diary" id="diario">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="label">(Diario)</span><h2 class="h2">Lo último<br>que ha pasado</h2></div>
+      <a class="btn ghost" href="https://www.instagram.com/adriaap_/" target="_blank" rel="noopener">Seguir en Instagram</a>
+    </div>
+    <div class="posts">
+      <a class="post" href="https://www.instagram.com/adriaap_/p/DekNqEmovEX/" target="_blank" rel="noopener">
+        <img src="assets/directo-history.jpg" alt="" loading="lazy">
+        <div class="in"><p class="meta">Festival</p><h3>Mi primer festival de 12 horas</h3><p>Hard Experiences × Reaktor Group. Uno de mis sueños hecho realidad, set de 18:00 a 19:30.</p><span class="more">Leer en Instagram</span></div>
+      </a>
+      <a class="post" href="https://www.instagram.com/adriaap_/p/DXr3EMjiGt6/" target="_blank" rel="noopener">
+        <img src="assets/feral-lateral.webp" alt="" loading="lazy" style="object-position:50% 30%">
+        <div class="in"><p class="meta">Directo</p><h3>Los MashAP suenan en Feral Fest</h3><p>Primera vez poniéndolos delante de la gente. Disfruté como un niño pequeño.</p><span class="more">Leer en Instagram</span></div>
+      </a>
+      <a class="post" href="https://www.instagram.com/adriaap_/reel/DdQo2teo4WC/" target="_blank" rel="noopener">
+        <img src="assets/cabina-bn.jpg" alt="" loading="lazy">
+        <div class="in"><p class="meta">Origen</p><h3>De vuelta a Revés</h3><p>El reencuentro con mis orígenes: ahí empecé a pinchar hace casi dos años.</p><span class="more">Leer en Instagram</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="book" id="bookings">
+  <div class="wrap grid">
+    <div>
+      <span class="label">(Bookings)</span>
+      <h2 class="h2">Contrátame<br>para tu sala</h2>
+      <p class="lead" style="margin-top:22px">Salas, festivales, afters y streams. Tarragona, Barcelona y donde haga falta.</p>
+      <div class="contacts">
+        <a href="https://ig.me/m/adriaap_" target="_blank" rel="noopener"><b>Instagram</b><span>@adriaap_</span></a>
+        <a href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener"><b>SoundCloud</b><span>MashAP</span></a>
+        <a href="https://youtu.be/nF0jhbLRc_k" target="_blank" rel="noopener"><b>YouTube</b><span>Sesiones</span></a>
+      </div>
+    </div>
+    <form id="bookform">
+      <div class="two">
+        <label>Tu nombre<input name="nombre" required autocomplete="name"></label>
+        <label>Sala o evento<input name="sala" required></label>
+      </div>
+      <div class="two">
+        <label>Ciudad<input name="ciudad" required></label>
+        <label>Fecha<input name="fecha" type="date"></label>
+      </div>
+      <label>Tipo
+        <select name="tipo"><option>Sala</option><option>Festival</option><option>After</option><option>Stream</option><option>Evento privado</option></select>
+      </label>
+      <label>Cuéntame más<textarea name="mensaje" placeholder="Horario del set, aforo, line-up…"></textarea></label>
+      <button class="btn uv" type="submit">Enviar por WhatsApp</button>
+      <p class="hint">Se abre WhatsApp con tu mensaje ya escrito.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="end" aria-hidden="true">240<small>Hasta aquí ha subido la página. En la pista sube más.</small></p>
+    <div class="foot">
+      <span>© 2026 AP · Hard Techno Artist · Tarragona</span>
+      <nav><a href="https://www.instagram.com/adriaap_/" target="_blank" rel="noopener">Instagram</a><a href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">SoundCloud</a><a href="https://youtu.be/nF0jhbLRc_k" target="_blank" rel="noopener">YouTube</a></nav>
+      <span>Web por Studio Horta</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Número de WhatsApp para bookings (formato internacional, sin + ni espacios). Cambiar antes de publicar.
+const WHATSAPP = "34600000000";
+
+requestAnimationFrame(()=>document.documentElement.classList.add('ready'));
+
+// BPM sube con el scroll: 150 arriba, 240 al final
+const bpmEl=document.getElementById('bpm'), root=document.documentElement;
+let ticking=false;
+function upd(){
+  const max=document.body.scrollHeight-innerHeight;
+  const p=max>0?Math.min(1,Math.max(0,scrollY/max)):0;
+  const v=Math.round(150+p*90);
+  bpmEl.textContent=v; root.style.setProperty('--bpm',v); ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});
+upd();
+
+// Reproductor principal
+const player=document.getElementById('player'), mv=document.getElementById('mainvid');
+player.querySelector('button').addEventListener('pointerdown',()=>{player.classList.add('on');mv.controls=true;mv.play()});
+player.querySelector('button').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();player.classList.add('on');mv.controls=true;mv.play();mv.focus()}});
+
+// Solo reproducir vídeos decorativos cuando se ven
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(reduce){v.pause();return}e.isIntersecting?v.play().catch(()=>{}):v.pause()}),{threshold:.15});
+document.querySelectorAll('video[autoplay]').forEach(v=>io.observe(v));
+
+// Formulario -> WhatsApp
+document.getElementById('bookform').addEventListener('submit',e=>{
+  e.preventDefault(); const f=new FormData(e.target);
+  const t=`Hola AP, soy ${f.get('nombre')} de ${f.get('sala')}.\nCiudad: ${f.get('ciudad')}\nFecha: ${f.get('fecha')||'por concretar'}\nTipo: ${f.get('tipo')}\n${f.get('mensaje')||''}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`,'_blank','noopener');
+});
+</script>
+</body>
+</html>
