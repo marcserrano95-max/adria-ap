@@ -627,6 +627,51 @@ footer{padding:40px 0 30px;overflow:hidden}
   .proc2 .step .n{font-size:2.4rem}
   .proc2 .steps svg{display:none}
 }
+
+/* ===== v6 ===== */
+/* hero: video, then name, then bio */
+.hero3{min-height:0;padding:86px 0 34px}
+.hero-grid{grid-template-columns:1fr;justify-items:center;text-align:center;gap:0;min-height:0}
+.hero-media{order:0;justify-self:center;margin:0;width:min(620px,64svh,92vw)}
+.hero-copy{display:flex;flex-direction:column;align-items:center;margin-top:calc(min(620px,64svh,92vw) * -.12);position:relative;z-index:2}
+.hero-title{flex-direction:row;gap:.28em;justify-content:center;margin:0 0 18px;font-size:clamp(3rem,10vw,8.4rem)}
+.hero3 .about{max-width:46ch;margin:0 auto}
+.hero3 .about .label{margin-bottom:6px}
+.hero3 .genres{max-width:52ch;margin:10px auto 0}
+.hero-actions{justify-content:center;margin-top:20px}
+.hero-grid{grid-template-columns:minmax(0,1fr)}
+@media (max-width:860px){.hero-media{width:min(560px,100%);margin:0}.hero-copy{width:100%}.hero-title{font-size:clamp(2.8rem,14vw,4.4rem)}}
+/* tighter vertical rhythm */
+.stream{padding:clamp(48px,6vw,80px) 0 0}
+.stream .head,.tracksec .head,.diary .head,.posters .head{margin-bottom:32px}
+.marquee{margin-top:clamp(44px,5vw,70px)}
+.feature,.tracksec,.photos,.words,.ink,.diary,.book,.posters{padding-top:clamp(60px,7vw,110px);padding-bottom:clamp(60px,7vw,110px)}
+.vid3-sticky{padding-top:64px}
+.scenes{padding-bottom:clamp(40px,5vw,70px)}
+.played{margin-top:36px}.quotes{margin-top:40px}
+footer{padding-top:10px}
+/* marquee with platform logos */
+.marquee .track{gap:52px;align-items:center}
+.mq{display:inline-flex;align-items:center;gap:12px;font:500 1.1rem/1 var(--display);color:var(--chrome)}
+.mq svg{height:24px;width:auto;flex:none}
+.mq img{height:24px;width:auto}
+.mq .apt{font:800 .8rem/1 var(--body);padding:6px 9px;border-radius:7px;background:#ECE8F4;color:#111;letter-spacing:-.02em}
+/* music button: obvious */
+.navsound{gap:8px;padding:9px 16px 9px 12px;background:rgba(155,77,255,.18);box-shadow:inset 0 0 0 1px rgba(155,77,255,.7)}
+.navsound:hover{background:rgba(155,77,255,.3)}
+.ns-ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ns-ico .spk{fill:currentColor}
+.ns-ico .on{display:none}
+.sound[aria-pressed="true"] .ns-ico .on,.navsound[aria-pressed="true"] .ns-ico .on{display:inline;animation:wave 1s ease-in-out infinite}
+.sound[aria-pressed="true"] .ns-ico .off,.navsound[aria-pressed="true"] .ns-ico .off{display:none}
+@keyframes wave{50%{opacity:.35}}
+.navsound[aria-pressed="false"]::after{content:"";position:absolute;inset:-4px;border-radius:999px;box-shadow:0 0 0 2px rgba(226,59,214,.6);animation:ring 2.2s ease-out infinite;pointer-events:none}
+.navsound{position:relative}
+@keyframes ring{0%{opacity:.9;transform:scale(.92)}70%,100%{opacity:0;transform:scale(1.18)}}
+@media (max-width:860px){.navsound .ns-t{display:inline}.navsound{padding:9px 13px 9px 10px;font-size:.78rem}}
+@media (max-width:560px){.bpm{display:none}.navsound{margin-left:auto}.nav .btn{padding:10px 14px;font-size:.82rem}}
+@media (prefers-reduced-motion:reduce){.navsound::after{animation:none!important}}
+.sound{background:rgba(155,77,255,.22);box-shadow:inset 0 0 0 1px rgba(155,77,255,.7)}
 </style>
 </head>
 <body>
@@ -640,7 +685,9 @@ footer{padding:40px 0 30px;overflow:hidden}
     <li><a href="#carteles">Carteles</a></li>
     <li><a href="#diario">Diario</a></li>
   </ul>
-  <button class="navsound" id="navsound" type="button" aria-pressed="false" aria-label="Activar música"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="ns-t">Música</span></button>
+  <button class="navsound" id="navsound" type="button" aria-pressed="false" aria-label="Activar música">
+    <svg class="ns-ico" viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="off" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/><path class="on" d="M16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11"/></svg>
+    <span class="ns-t">Activar música</span></button>
   <audio id="music" src="assets/musica-ap.m4a" loop preload="none"></audio>
   <div class="bpm" aria-label="Tempo de la página"><span class="dot"></span><span id="bpm">150</span><small>BPM</small></div>
   <a class="btn uv" href="#bookings">Contratar</a>
@@ -652,17 +699,17 @@ footer{padding:40px 0 30px;overflow:hidden}
 <section class="hero hero3">
   <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="assets/hero-rayos.jpg" aria-hidden="true"><source src="assets/hero-rayos-bg.mp4" type="video/mp4"></video>
   <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="about"><span class="label">(Sobre mí)</span><br>Hard techno desde Tarragona. Bombo fuerte, presión constante y un MashAP nuevo cada viernes a las 20:00.</p>
-      <h1 class="hero-title"><span>Adrià</span><span>AP</span></h1>
-      <p class="genres">Hard techno, groove, hard bounce, schranz, industrial y hardpsy. Hasta la 240.</p>
-      <div class="hero-actions">
-        <button class="sound" id="soundbtn" type="button" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="soundtxt">Activar sonido</span></button>
-        <a class="btn ghost" href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Mi Estrella Blanca, descarga gratis</a>
-      </div>
-    </div>
     <div class="hero-media" id="heromedia">
       <video id="herovid" autoplay muted loop playsinline preload="auto" poster="assets/hero-rayos.jpg"><source src="assets/hero-rayos.mp4" type="video/mp4"></video>
+    </div>
+    <div class="hero-copy">
+      <h1 class="hero-title"><span>Adrià</span><span>AP</span></h1>
+      <p class="about"><span class="label">(Sobre mí)</span><br>Hard techno desde Tarragona. Bombo fuerte, presión constante y un MashAP nuevo cada viernes a las 20:00.</p>
+      <p class="genres">Hard techno, groove, hard bounce, schranz, industrial y hardpsy. Hasta la 240.</p>
+      <div class="hero-actions">
+        <button class="sound" id="soundbtn" type="button" aria-pressed="false"><svg class="ns-ico" viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="off" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/><path class="on" d="M16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11"/></svg><span id="soundtxt">Activar música</span></button>
+        <a class="btn ghost" href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Mi Estrella Blanca, descarga gratis</a>
+      </div>
     </div>
   </div>
 </section>
@@ -701,10 +748,7 @@ footer{padding:40px 0 30px;overflow:hidden}
       </a>
     </div>
   </div>
-  <div class="marquee" aria-hidden="true"><div class="track">
-    <span><b>●</b>SoundCloud</span><span><b>●</b>YouTube</span><span><b>●</b>Instagram</span><span><b>●</b>APT TV</span><span><b>●</b>MashAP cada viernes</span><span><b>●</b>Hard techno</span>
-    <span><b>●</b>SoundCloud</span><span><b>●</b>YouTube</span><span><b>●</b>Instagram</span><span><b>●</b>APT TV</span><span><b>●</b>MashAP cada viernes</span><span><b>●</b>Hard techno</span>
-  </div></div>
+  <div class="marquee" aria-hidden="true"><div class="track"><span class="mq"><svg viewBox="0 0 32 16" aria-hidden="true"><path fill="currentColor" d="M26 6.5a5 5 0 00-4.8-3.6c-.6 0-1.2.1-1.7.3V15h6.6a3.6 3.6 0 00-.1-7.2zM18 4v11h-1V4.6c.3-.2.7-.4 1-.6zM15.5 5.5V15h-1V6.2l1-.7zM13 7v8h-1V7.2zM10.5 7.5V15h-1V7.8zM8 8v7H7V8.3zM5.5 9v6h-1V9.3zM3 10.2V14.8h-1v-4.4z"/></svg>SoundCloud</span><span class="mq"><svg viewBox="0 0 28 20" aria-hidden="true"><rect x="0" y="0" width="28" height="20" rx="6" fill="#FF0033"/><path d="M11 5.5l8 4.5-8 4.5z" fill="#fff"/></svg>YouTube</span><span class="mq"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="url(#igg)" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="url(#igg)" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.3" fill="#D62976"/></svg>Instagram</span><span class="mq"><b class="apt">apt.tv</b>APT TV</span><span class="mq"><img src="assets/logo-ap-sm.webp" alt="">MashAP cada viernes</span><span class="mq"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/><path fill="#fff" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6-.5.5c-.1.1-.2.3-.1.5.3.6.8 1.2 1.3 1.7.6.5 1.3.9 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .4-.1 1-.6 1.4-.4.4-1.2.8-2 .7-1.2-.1-2.8-.8-4.1-2-1.4-1.3-2.3-2.8-2.6-3.9-.2-.9.1-1.6.7-2.3z"/></svg>Bookings por WhatsApp</span><span class="mq"><svg viewBox="0 0 32 16" aria-hidden="true"><path fill="currentColor" d="M26 6.5a5 5 0 00-4.8-3.6c-.6 0-1.2.1-1.7.3V15h6.6a3.6 3.6 0 00-.1-7.2zM18 4v11h-1V4.6c.3-.2.7-.4 1-.6zM15.5 5.5V15h-1V6.2l1-.7zM13 7v8h-1V7.2zM10.5 7.5V15h-1V7.8zM8 8v7H7V8.3zM5.5 9v6h-1V9.3zM3 10.2V14.8h-1v-4.4z"/></svg>SoundCloud</span><span class="mq"><svg viewBox="0 0 28 20" aria-hidden="true"><rect x="0" y="0" width="28" height="20" rx="6" fill="#FF0033"/><path d="M11 5.5l8 4.5-8 4.5z" fill="#fff"/></svg>YouTube</span><span class="mq"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".6" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="url(#igg)" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="url(#igg)" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.3" fill="#D62976"/></svg>Instagram</span><span class="mq"><b class="apt">apt.tv</b>APT TV</span><span class="mq"><img src="assets/logo-ap-sm.webp" alt="">MashAP cada viernes</span><span class="mq"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/><path fill="#fff" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6-.5.5c-.1.1-.2.3-.1.5.3.6.8 1.2 1.3 1.7.6.5 1.3.9 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .4-.1 1-.6 1.4-.4.4-1.2.8-2 .7-1.2-.1-2.8-.8-4.1-2-1.4-1.3-2.3-2.8-2.6-3.9-.2-.9.1-1.6.7-2.3z"/></svg>Bookings por WhatsApp</span></div></div>
 </section>
 
 <!-- NEW RELEASE -->
@@ -1073,8 +1117,8 @@ function tracker(){let h=[];return{
 /* hero: sound + logo tilt */
 // music keeps playing across the whole page: one <audio>, two buttons (hero + nav)
 const music=document.getElementById('music'),sb=document.getElementById('soundbtn'),st=document.getElementById('soundtxt'),nsb=document.getElementById('navsound');
-function syncMusic(){const on=!music.paused;[sb,nsb].forEach(b=>b.setAttribute('aria-pressed',String(on)));st.textContent=on?'Pausar música':'Activar sonido';
-  nsb.setAttribute('aria-label',on?'Pausar música':'Activar música');nsb.querySelector('.ns-t').textContent=on?'Sonando':'Música'}
+function syncMusic(){const on=!music.paused;[sb,nsb].forEach(b=>b.setAttribute('aria-pressed',String(on)));st.textContent=on?'Pausar música':'Activar música';
+  nsb.setAttribute('aria-label',on?'Pausar música':'Activar música');nsb.querySelector('.ns-t').textContent=on?'Música sonando':'Activar música'}
 function toggleMusic(force){const want=force===undefined?music.paused:force;if(want){music.volume=.85;music.play().catch(()=>{})}else music.pause()}
 [sb,nsb].forEach(b=>b.addEventListener('click',()=>toggleMusic()));
 music.addEventListener('play',syncMusic);music.addEventListener('pause',syncMusic);
