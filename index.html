@@ -524,6 +524,80 @@ footer{padding:40px 0 30px;overflow:hidden}
   .hscroll{height:auto!important}.hs-sticky{position:relative;height:auto;padding:100px 0}.hs-track{overflow-x:auto;width:auto;transform:none!important}
 }
 
+
+/* ===== v4 ===== */
+/* hero video melted into the background */
+.hero-media{box-shadow:none;border-radius:0;overflow:visible;max-width:none;width:min(820px,118%);justify-self:end;margin-right:calc(var(--pad) * -1);
+  -webkit-mask-image:radial-gradient(closest-side,#000 58%,rgba(0,0,0,.6) 78%,transparent 100%);mask-image:radial-gradient(closest-side,#000 58%,rgba(0,0,0,.6) 78%,transparent 100%);
+  mix-blend-mode:lighten}
+.hero-media video{border-radius:0}
+.hero3 .hero-bg{opacity:.9;filter:blur(46px) saturate(1.5)}
+@media (max-width:860px){.hero-media{width:min(560px,112%);margin:0 -6%;justify-self:center}}
+
+/* tighter pocket cards */
+.pocket{aspect-ratio:3/3.6}
+.p-bg{height:100%;transform:translateY(0)}
+.p-fg{height:auto;padding:40px 22px 22px}
+.p-text{position:static}
+.p-num{top:-28px}
+.pocket:hover .p-bg,.pocket.open .p-bg,.pocket:focus-visible .p-bg{transform:translateY(-6%) rotate(-3deg) scale(1.04)}
+
+/* process: scroll-scrubbed */
+.proc2{position:relative;height:260vh;background:var(--night)}
+.proc-sticky{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
+.proc-sticky .wrap{width:100%;position:relative;z-index:1}
+.proc-glow{position:absolute;left:50%;top:60%;width:120vmax;height:120vmax;margin:-60vmax 0 0 -60vmax;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,59,214,.32),rgba(155,77,255,.12) 35%,transparent 62%);opacity:0;transform:scale(.6);will-change:transform,opacity}
+.proc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.proc-bpm{display:flex;align-items:baseline;gap:10px;font:900 clamp(4rem,12vw,10rem)/.85 var(--display);letter-spacing:-.06em;font-variant-numeric:tabular-nums;
+  color:transparent;-webkit-text-stroke:1.5px rgba(236,232,244,.4);background:linear-gradient(0deg,var(--horn) var(--fill,0%),transparent var(--fill,0%));-webkit-background-clip:text;background-clip:text}
+.proc-bpm small{font:700 1rem/1 var(--body);letter-spacing:0;-webkit-text-stroke:0;color:var(--ash)}
+.proc2 .steps{margin-top:clamp(40px,8vh,80px)}
+.proc2 .steps svg{top:66px;height:40px}
+.pp-bg{fill:none;stroke:rgba(236,232,244,.12);stroke-width:2;vector-effect:non-scaling-stroke}
+.pp{fill:none;stroke:url(#gr2);stroke-width:3;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 6px rgba(226,59,214,.8))}
+.proc-dot{position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 4px rgba(226,59,214,.45),0 0 26px 6px rgba(226,59,214,.8);animation:beat2 var(--beat,.4s) infinite;z-index:2}
+@keyframes beat2{0%,100%{transform:scale(.8)}15%{transform:scale(1.35)}}
+.proc2 .step{opacity:.22;transform:translateY(26px);transition:opacity .6s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.proc2 .step.on{opacity:1;transform:none}
+.proc2 .step .n{transition:color .4s ease,-webkit-text-stroke-color .4s,text-shadow .4s}
+.proc2 .step.on .n{color:var(--chrome);-webkit-text-stroke-color:transparent;text-shadow:0 0 30px rgba(155,77,255,.6)}
+.proc2 .step.on:last-child .n{color:var(--horn);text-shadow:0 0 34px rgba(226,59,214,.8)}
+.proc2 .step:last-child .n{color:transparent;-webkit-text-stroke:1px rgba(236,232,244,.35);text-shadow:none}
+@media (max-width:860px){.proc2{height:220vh}.proc-dot{display:none}.proc-bpm{font-size:clamp(3.4rem,16vw,5rem)}.proc2 .steps{row-gap:28px}.proc2 .step{padding-top:64px}}
+
+/* video carousel */
+.vc-stage{position:relative;width:100%;height:min(60svh,600px);touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none;cursor:grab;will-change:transform}
+.vc-stage:active{cursor:grabbing}
+.vc-track{position:absolute;left:50%;top:0;height:100%;width:0}
+.vc{position:absolute;top:0;height:100%;aspect-ratio:3/4;transform-origin:50% 60%;border-radius:22px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(0,0,0,.55);will-change:transform,opacity}
+.vc video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.vc.live video{pointer-events:auto}
+.vc::after{content:"";position:absolute;inset:0;background:rgba(8,5,15,var(--dim,0));pointer-events:none;transition:background .2s}
+.vc.center{box-shadow:0 0 0 1px rgba(155,77,255,.5),0 40px 120px rgba(155,77,255,.35)}
+.vc-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;border:0;background:rgba(236,232,244,.92);display:grid;place-items:center;cursor:pointer;
+  opacity:0;transform:scale(.8);transition:opacity .25s,transform .25s cubic-bezier(.34,1.4,.5,1);z-index:2}
+.vc.center .vc-play{opacity:1;transform:none}
+.vc.live .vc-play{opacity:0;pointer-events:none}
+.vc-play:active{transform:scale(.93)}
+.vc-play svg{width:24px;margin-left:4px;fill:var(--void)}
+.vc-ui{display:flex;align-items:center;gap:18px;margin-top:22px}
+.vc-btn{width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;color:var(--chrome);background:transparent;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;transition:transform .1s ease-out,box-shadow .2s}
+.vc-btn:hover{box-shadow:inset 0 0 0 1px var(--chrome)}
+.vc-btn:active{transform:scale(.94)}
+.vc-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.vc-cap{text-align:center;min-width:220px}
+.vc-cap b{display:block;font:700 1.05rem/1.2 var(--display)}
+.vc-cap span{color:var(--ash);font-size:.88rem}
+.vc-dots{display:flex;gap:8px;margin-top:14px}
+.vc-dots i{width:7px;height:7px;border-radius:50%;background:rgba(236,232,244,.25);transition:background .2s,transform .2s}
+.vc-dots i.on{background:var(--horn);transform:scale(1.3)}
+.vc-ui,.vc-dots,.vid3-head{will-change:opacity}
+@media (max-width:760px){.vc-stage{height:min(54svh,520px)}}
+@media (prefers-reduced-motion:reduce){.proc2{height:auto}.proc-sticky{position:relative;height:auto;padding:100px 0}.proc2 .step{opacity:1;transform:none}.proc-dot{display:none}}
+
 </style>
 </head>
 <body>
@@ -675,16 +749,26 @@ footer{padding:40px 0 30px;overflow:hidden}
 </section>
 
 <!-- PROCESS -->
-<section class="process">
-  <div class="wrap">
-    <span class="label">(Cómo sube una sesión)</span>
-    <h2 class="h2">De groove<br>a 240</h2>
-    <div class="steps">
-      <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110 C 180 110, 220 80, 330 78 S 520 60, 600 50 S 820 30, 1000 4" fill="none" stroke="url(#gr)" stroke-width="2"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#9A93AE" stop-opacity=".3"/><stop offset="1" stop-color="#E23BD6"/></linearGradient></defs></svg>
-      <div class="step"><span class="n">1</span><h3>Groove</h3><p>Arranco con groove para que la pista entre y se suelte.</p></div>
-      <div class="step"><span class="n">2</span><h3>Presión</h3><p>Bombo firme y ritmo constante. Schranz e industrial, sin adornos.</p></div>
-      <div class="step"><span class="n">3</span><h3>Bounce</h3><p>Hard bounce para saltar. Aquí el after se convierte en deporte de riesgo.</p></div>
-      <div class="step"><span class="n">240</span><h3>Trance puro</h3><p>Velocidad máxima y un MashAP para cerrar. Si estabas ahí, sabes lo que pasó.</p></div>
+<section class="proc2" id="proceso">
+  <div class="proc-sticky">
+    <div class="proc-glow" id="procglow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="proc-head">
+        <div><span class="label">(Cómo sube una sesión)</span><h2 class="h2">De groove<br>a 240</h2></div>
+        <p class="proc-bpm" aria-hidden="true"><span id="procbpm">120</span><small>BPM</small></p>
+      </div>
+      <div class="steps" id="steps">
+        <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="gr2" x1="0" x2="1"><stop offset="0" stop-color="#9B4DFF"/><stop offset="1" stop-color="#E23BD6"/></linearGradient></defs>
+          <path class="pp-bg" d="M0 110 C 180 110, 220 80, 330 78 S 520 60, 600 50 S 820 30, 1000 4"/>
+          <path class="pp" id="procpath" d="M0 110 C 180 110, 220 80, 330 78 S 520 60, 600 50 S 820 30, 1000 4"/>
+        </svg>
+        <span class="proc-dot" id="procdot" aria-hidden="true"></span>
+        <div class="step"><span class="n">1</span><h3>Groove</h3><p>Arranco con groove para que la pista entre y se suelte.</p></div>
+        <div class="step"><span class="n">2</span><h3>Presión</h3><p>Bombo firme y ritmo constante. Schranz e industrial, sin adornos.</p></div>
+        <div class="step"><span class="n">3</span><h3>Bounce</h3><p>Hard bounce para saltar. Aquí el after se convierte en deporte de riesgo.</p></div>
+        <div class="step"><span class="n">240</span><h3>Trance puro</h3><p>Velocidad máxima y un MashAP para cerrar. Si estabas ahí, sabes lo que pasó.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -693,17 +777,15 @@ footer{padding:40px 0 30px;overflow:hidden}
 <section class="vid3" id="video">
   <div class="vid3-sticky">
     <div class="vid3-head"><span class="label">(Vídeo)</span><h2 class="h2">Así suena<br>en directo</h2></div>
-    <div class="vid3-stage" id="vid3stage">
-      <div class="side l" id="vsl"><video autoplay muted loop playsinline preload="none" poster="assets/hero-calavera.jpg" aria-hidden="true"><source src="assets/hero-calavera.mp4" type="video/mp4"></video></div>
-      <div class="side r" id="vsr"><video autoplay muted loop playsinline preload="none" poster="assets/pista.jpg" aria-hidden="true"><source src="assets/pista.mp4" type="video/mp4"></video></div>
-      <div class="player" id="player">
-        <video id="mainvid" playsinline preload="metadata" poster="assets/directo-history.jpg"><source src="assets/directo-history.mp4" type="video/mp4"></video>
-        <button type="button" aria-label="Reproducir vídeo con sonido">
-          <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>
-          <span class="cap">We Love History<small>Un minuto de pista, con sonido</small></span>
-        </button>
-      </div>
+    <div class="vc-stage" id="vcstage" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Vídeos en directo. Desliza, toca uno de los lados o usa las flechas para cambiar.">
+      <div class="vc-track" id="vctrack"></div>
     </div>
+    <div class="vc-ui">
+      <button class="vc-btn" type="button" data-dir="-1" aria-label="Vídeo anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <p class="vc-cap" id="vccap" aria-live="polite"><b></b><span></span></p>
+      <button class="vc-btn" type="button" data-dir="1" aria-label="Vídeo siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="vc-dots" id="vcdots" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -911,10 +993,6 @@ function upd(){
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});
 upd();
 
-// Reproductor principal
-const player=document.getElementById('player'), mv=document.getElementById('mainvid');
-player.querySelector('button').addEventListener('pointerdown',()=>{player.classList.add('on');mv.controls=true;mv.play()});
-player.querySelector('button').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();player.classList.add('on');mv.controls=true;mv.play();mv.focus()}});
 
 // Solo reproducir vídeos decorativos cuando se ven
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -967,8 +1045,6 @@ sb.addEventListener('click',()=>{
   const on=hv.muted; hv.muted=!on; if(on){hv.volume=.8;hv.play().catch(()=>{})}
   sb.setAttribute('aria-pressed',String(on)); st.textContent=on?'Silenciar':'Activar sonido';
 });
-// silence hero when the live video plays
-document.getElementById('mainvid').addEventListener('play',()=>{if(!hv.muted)sb.click()});
 /* pocket cards: tilt with pointer; on touch, open when centred on screen */
 document.querySelectorAll('.pocket').forEach(p=>{
   if(FINE&&!RM){
@@ -1122,34 +1198,89 @@ if(!FINE){const po=new IntersectionObserver(es=>es.forEach(e=>e.target.classList
   addEventListener('scroll',()=>{if(fl.classList.contains('on')&&!list.matches(':hover'))fl.classList.remove('on')},{passive:true});
 })();
 
-// scroll-driven sections: video grows in, photos slide sideways
+// scroll-driven sections: video stage grows in, process scrubs, photos slide sideways
+const VC={spread:1};
 (()=>{
-  const vs=document.getElementById('video'),pl=document.getElementById('player'),sl=document.getElementById('vsl'),sr=document.getElementById('vsr'),vh=vs.querySelector('.vid3-head');
+  const vs=document.getElementById('video'),stage=document.getElementById('vcstage'),vh=vs.querySelector('.vid3-head'),ui=vs.querySelector('.vc-ui'),dots=document.getElementById('vcdots');
   const hs=document.querySelector('.hscroll'),track=document.getElementById('hstrack'),bar=document.getElementById('hsbar'),items=[...track.children];
+  const ps=document.getElementById('proceso'),path=document.getElementById('procpath'),dot=document.getElementById('procdot'),steps=[...document.querySelectorAll('#steps .step')],
+        bpm=document.getElementById('procbpm'),bpmBox=bpm.parentElement,glow=document.getElementById('procglow'),svg=path.ownerSVGElement,stepsBox=document.getElementById('steps');
+  const L=path.getTotalLength();path.style.strokeDasharray=L;path.style.strokeDashoffset=L;
   const ease=t=>1-Math.pow(1-t,3);
+  const prog=el=>{const r=el.getBoundingClientRect(),span=r.height-innerHeight;return clamp(-r.top/(span||1),0,1)};
   function sizeH(){if(RM)return;hs.style.height=(track.scrollWidth-innerWidth+innerHeight)+'px'}
   function frame(){
     if(!RM){
       // video
-      const r=vs.getBoundingClientRect(),span=r.height-innerHeight,p=clamp(-r.top/span,0,1),e=ease(clamp(p/.55,0,1));
-      pl.style.transform=`translateY(${(1-e)*30}svh) scale(${.42+.58*e}) rotate(${(1-e)*-9}deg)`;pl.style.opacity=.35+.65*e;
-      const sw=pl.getBoundingClientRect().width,off=(sw*.5+16+ (sw*.78*.75)*.5)*e;
-      const e2=ease(clamp((p-.25)/.5,0,1)),o2=Math.min(1,(sw*.5+20)/1)*0;
-      sl.style.transform=`translate(-50%,-50%) translateX(${-off*e2/e||0}px) rotate(${-7*e2}deg)`;sr.style.transform=`translate(-50%,-50%) translateX(${off*e2/e||0}px) rotate(${7*e2}deg)`;
-      sl.style.opacity=sr.style.opacity=e2;
-      vh.style.transform=`translateY(${(1-e)*20}px)`;vh.style.opacity=.4+.6*e;
+      const p=prog(vs),e=ease(clamp(p/.5,0,1)),e2=ease(clamp((p-.2)/.4,0,1));
+      stage.style.transform=`translateY(${(1-e)*28}svh) scale(${.45+.55*e}) rotate(${(1-e)*-8}deg)`;
+      VC.spread=e2;vh.style.opacity=.4+.6*e;ui.style.opacity=dots.style.opacity=e2;
+      // process
+      const pp=ease(clamp((prog(ps)-.05)/.8,0,1));
+      path.style.strokeDashoffset=L*(1-pp);
+      const b=Math.round(120+pp*120);bpm.textContent=b;bpmBox.style.setProperty('--fill',(pp*100).toFixed(1)+'%');
+      glow.style.opacity=pp;glow.style.transform=`scale(${.6+pp*.5})`;
+      dot.style.setProperty('--beat',(60/b).toFixed(3)+'s');
+      if(dot.offsetParent){const pt=path.getPointAtLength(L*pp),sb=svg.getBoundingClientRect(),bb=stepsBox.getBoundingClientRect();
+        dot.style.left=(sb.left-bb.left+pt.x/1000*sb.width)+'px';dot.style.top=(sb.top-bb.top+pt.y/120*sb.height)+'px';dot.style.opacity=pp>0.01?1:0}
+      steps.forEach((s,i)=>s.classList.toggle('on',pp>=i/steps.length+.04||(i===steps.length-1&&pp>.97)));
       // photos
-      const hr=hs.getBoundingClientRect(),hspan=hr.height-innerHeight,hp=clamp(-hr.top/(hspan||1),0,1),max=track.scrollWidth-innerWidth;
+      const hp=prog(hs),max=track.scrollWidth-innerWidth;
       track.style.transform=`translateX(${-hp*max}px)`;bar.style.transform=`scaleX(${hp})`;
       const cx=innerWidth/2;
-      items.forEach(it=>{const b=it.getBoundingClientRect();if(b.right<-200||b.left>innerWidth+200)return;
-        const d=clamp((b.left+b.width/2-cx)/innerWidth,-1,1);
+      items.forEach(it=>{const bx=it.getBoundingClientRect();if(bx.right<-200||bx.left>innerWidth+200)return;
+        const d=clamp((bx.left+bx.width/2-cx)/innerWidth,-1,1);
         it.firstElementChild.style.transform=`rotate(${d*5}deg) scale(${1-Math.abs(d)*.08})`;
         it.querySelector('img').style.transform=`translateX(${-d*7}%)`});
-    }
+    }else{steps.forEach(s=>s.classList.add('on'));path.style.strokeDashoffset=0}
     requestAnimationFrame(frame);
   }
   sizeH();addEventListener('resize',sizeH);addEventListener('load',sizeH);requestAnimationFrame(frame);
+})();
+
+// live video carousel: drag, flick, tap the sides, play the centre with sound
+(()=>{
+  const clips=[
+    {src:'assets/hero-calavera.mp4',poster:'assets/hero-calavera.jpg',t:'We Love History',s:'La calavera en pantalla'},
+    {src:'assets/directo-history.mp4',poster:'assets/directo-history.jpg',t:'We Love History',s:'Un minuto de pista'},
+    {src:'assets/pista.mp4',poster:'assets/pista.jpg',t:'La pista',s:'Brazos arriba'},
+    {src:'assets/cabina-bn.mp4',poster:'assets/cabina-bn.jpg',t:'Cabina',s:'En blanco y negro'},
+    {src:'assets/hero-rayos.mp4',poster:'assets/hero-rayos.jpg',t:'Volume I',s:'Con su música'}
+  ];
+  const stage=document.getElementById('vcstage'),trackEl=document.getElementById('vctrack'),cap=document.getElementById('vccap'),dotsEl=document.getElementById('vcdots');
+  trackEl.innerHTML=clips.map((c,i)=>`<div class="vc" data-i="${i}"><video muted loop playsinline preload="none" poster="${c.poster}"><source src="${c.src}" type="video/mp4"></video>
+    <button class="vc-play" type="button" aria-label="Reproducir con sonido: ${c.t}"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button></div>`).join('');
+  dotsEl.innerHTML=clips.map(()=>'<i></i>').join('');
+  const els=[...trackEl.children],vids=els.map(e=>e.querySelector('video')),dts=[...dotsEl.children];
+  let pos=1,cur=-1,inView=false,H=0,W=0;
+  function size(){H=stage.clientHeight;W=H*.75;els.forEach(e=>{e.style.width=W+'px';e.style.marginLeft=(-W/2)+'px'})}
+  function stopLive(i){const e=els[i],v=vids[i];if(!e.classList.contains('live'))return;e.classList.remove('live');v.muted=true;v.controls=false}
+  function render(p){pos=p;const gap=W*.86*VC.spread;
+    els.forEach((el,i)=>{const d=i-p,a=Math.abs(d);
+      el.style.transform=`translateX(${d*gap}px) translateY(${Math.min(a,2)*14}px) rotate(${d*5*VC.spread}deg) scale(${1-Math.min(a,2)*.16})`;
+      el.style.zIndex=100-Math.round(a*10);el.style.opacity=a>2.4?0:a>1.6?1-(a-1.6)/.8:1;el.style.setProperty('--dim',Math.min(a*.45,.65).toFixed(2));
+      el.classList.toggle('center',a<.5)});
+    const c=clamp(Math.round(p),0,clips.length-1);
+    if(c!==cur){if(cur>=0)stopLive(cur);cur=c;cap.querySelector('b').textContent=clips[c].t;cap.querySelector('span').textContent=clips[c].s;dts.forEach((d,i)=>d.classList.toggle('on',i===c));previews()}}
+  function previews(){vids.forEach((v,i)=>{const near=Math.abs(i-cur)<=1;if(inView&&near&&!RM){if(v.preload!=='auto')v.preload='auto';v.play().catch(()=>{})}else if(!els[i].classList.contains('live'))v.pause()})}
+  const sp=makeSpring(render,.5);
+  // keep the spread in sync with the scroll-in animation
+  (function loop(){if(inView&&!sp._busy)render(sp.value);requestAnimationFrame(loop)})();
+  const go=(i,v)=>sp.to(clamp(i,0,clips.length-1),v);
+  function playLive(i){const e=els[i],v=vids[i];e.classList.add('live');v.muted=false;v.controls=true;v.currentTime=0;v.play().catch(()=>{});
+    const hv=document.getElementById('herovid');if(hv&&!hv.muted)document.getElementById('soundbtn').click()}
+  document.querySelectorAll('.vc-btn').forEach(b=>b.addEventListener('click',()=>go(cur+ +b.dataset.dir)));
+  stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}if(e.key==='Enter'&&!els[cur].classList.contains('live'))playLive(cur)});
+  let drag=false,moved=false,sx=0,p0=0,downEl=null;const tr=tracker();
+  stage.addEventListener('pointerdown',e=>{if(e.button)return;if(e.target.closest('.vc.live video'))return;drag=true;moved=false;sx=e.clientX;p0=sp.value;sp.stop();tr.reset(e.clientX,e.timeStamp);downEl=e.target.closest('.vc')});
+  stage.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-sx;if(!moved&&Math.abs(dx)>6){moved=true;stage.setPointerCapture(e.pointerId)}
+    if(!moved)return;tr.push(e.clientX,e.timeStamp);let p=p0-dx/(W*.86);const max=clips.length-1;if(p<0)p=-rubber(-p,2);else if(p>max)p=max+rubber(p-max,2);sp.set(p)});
+  const end=()=>{if(!drag)return;drag=false;
+    if(!moved){if(downEl){const i=+downEl.dataset.i;if(i===cur){if(!els[i].classList.contains('live'))playLive(i)}else go(i)}return}
+    const vx=tr.vel(),proj=sp.value-project(vx)/(W*.86);go(Math.round(clamp(proj,sp.value-2,sp.value+2)),-vx/(W*.86))};
+  stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',()=>{drag=false;go(Math.round(sp.value))});
+  new IntersectionObserver(es=>es.forEach(e=>{inView=e.isIntersecting;if(!inView&&cur>=0)stopLive(cur);previews()}),{threshold:.2}).observe(stage);
+  addEventListener('resize',()=>{size();render(pos)});size();sp.set(1);
 })();
 
 // scenes: full-bleed venues with page-transition styles
