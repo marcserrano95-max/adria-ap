@@ -401,6 +401,129 @@ footer{padding:40px 0 30px;overflow:hidden}
   .hero .hero-logo,.hero .hero-name{opacity:1;transform:none;transition:none}
 }
 
+
+/* ===== v3 ===== */
+/* hero with square video */
+.hero3{display:block;min-height:100svh;padding:110px 0 60px;overflow:hidden}
+.hero3::before{background:radial-gradient(90% 70% at 70% 45%,rgba(8,5,15,.25),rgba(8,5,15,.88) 70%),linear-gradient(180deg,rgba(8,5,15,.5),transparent 30%,transparent 70%,var(--void))}
+.hero3 .hero-bg{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;filter:blur(38px) saturate(1.4);opacity:.75}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:calc(100svh - 170px)}
+.hero-title{display:flex;flex-direction:column;font:900 clamp(3.4rem,9vw,8.6rem)/.88 var(--display);letter-spacing:-.06em;text-transform:uppercase;margin:26px 0 22px;
+  background:linear-gradient(176deg,#fff 0%,#d9d3e8 30%,#6f6787 48%,#f4f0ff 52%,#b9b0cf 72%,#fff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px rgba(155,77,255,.4))}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-media{position:relative;aspect-ratio:1/1;width:100%;max-width:640px;justify-self:end;border-radius:30px;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(155,77,255,.45),0 40px 120px rgba(155,77,255,.45),0 30px 60px rgba(0,0,0,.5);
+  transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.hero-media video{width:100%;height:100%;object-fit:cover}
+.hero3 .about,.hero3 .hero-title,.hero3 .genres,.hero3 .hero-actions,.hero3 .hero-media{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1)}
+.hero3 .hero-media{transform:perspective(1000px) scale(.88) rotate(-4deg);filter:blur(10px);transition:opacity 1s ease,transform 1.4s cubic-bezier(.16,1,.3,1),filter 1s ease}
+.ready .hero3 .about,.ready .hero3 .hero-title,.ready .hero3 .genres,.ready .hero3 .hero-actions{opacity:1;transform:none}
+.ready .hero3 .hero-title{transition-delay:.12s}.ready .hero3 .genres{transition-delay:.24s}.ready .hero3 .hero-actions{transition-delay:.34s}
+.ready .hero3 .hero-media{opacity:1;filter:none;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition-delay:.1s}
+.ready .hero3 .hero-media.settled{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;min-height:0}.hero-media{order:-1;justify-self:center;max-width:520px}.hero-title{margin-top:14px}}
+
+/* pockets without logo */
+.p-png{display:none}
+
+/* tracklist */
+.tracksec{padding:clamp(90px,12vw,170px) 0;position:relative}
+.tracks{list-style:none;border-top:1px solid var(--line)}
+.trk{border-bottom:1px solid var(--line)}
+.trk a{display:grid;grid-template-columns:150px 1fr minmax(0,300px);align-items:center;gap:24px;padding:clamp(18px,2.4vw,30px) 0;transition:opacity .35s ease}
+.trk-thumb{display:none}
+.trk-k{color:var(--ash);font-size:.88rem}
+.trk-t{display:block;overflow:hidden;height:1.08em;font:800 clamp(1.8rem,5vw,4.4rem)/1.08 var(--display);letter-spacing:-.045em}
+.roll{display:flex;flex-direction:column;transition:transform .55s cubic-bezier(.65,0,.2,1)}
+.roll span{display:block;white-space:nowrap}
+.roll span+span{color:var(--horn)}
+.trk-d{color:var(--ash);font-size:.95rem}
+.tracks:hover .trk a{opacity:.35}
+.tracks .trk a:hover,.tracks .trk a:focus-visible{opacity:1}
+.trk a:hover .roll,.trk a:focus-visible .roll{transform:translateY(-50%)}
+.js .trk{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+.js .tracks.in .trk{opacity:1;transform:none}
+.tracks.in .trk:nth-child(2){transition-delay:.06s}.tracks.in .trk:nth-child(3){transition-delay:.12s}.tracks.in .trk:nth-child(4){transition-delay:.18s}.tracks.in .trk:nth-child(5){transition-delay:.24s}.tracks.in .trk:nth-child(6){transition-delay:.3s}
+.trk-float{position:fixed;left:0;top:0;width:280px;height:280px;pointer-events:none;z-index:40;opacity:0;transform:translate(-999px,-999px);will-change:transform}
+.trk-float.on{opacity:1}
+.trk-float{transition:opacity .25s ease}
+.trk-cover{position:absolute;inset:0;border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);transform:scale(var(--s,.6));transition:transform .45s cubic-bezier(.34,1.4,.5,1)}
+.trk-float.on .trk-cover{--s:1}
+.trk-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease}
+.trk-cover img.on{opacity:1}
+.trk-disc{position:absolute;top:8%;right:-34%;width:84%;height:84%;border-radius:50%;
+  background:radial-gradient(circle,var(--horn) 0 14%,#111 14.5% 16%,#0b0b0b 16.5%),repeating-radial-gradient(circle,#161616 0 2px,#0c0c0c 2px 4px);
+  background-blend-mode:normal;box-shadow:0 20px 50px rgba(0,0,0,.6);transform:translateX(-40%) rotate(0);transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.trk-float.on .trk-disc{transform:translateX(0);animation:spin 2.2s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+@media (hover:none),(max-width:860px){
+  .trk-float{display:none}
+  .trk a{grid-template-columns:64px 1fr;grid-template-areas:"img k" "img t" "img d";column-gap:16px;row-gap:2px}
+  .trk-thumb{display:block;grid-area:img;width:64px;height:64px;border-radius:12px;object-fit:cover}
+  .trk-k{grid-area:k}.trk-t{grid-area:t;font-size:clamp(1.3rem,6vw,2rem);height:1.1em}.trk-d{grid-area:d;font-size:.85rem}
+  .tracks:hover .trk a{opacity:1}
+}
+
+/* scroll-driven video */
+.vid3{position:relative;height:250vh;background:var(--void)}
+.vid3-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:70px}
+.vid3-head{text-align:center;margin-bottom:24px;will-change:transform,opacity}
+.vid3-head .h2{font-size:clamp(2.2rem,5.6vw,4.8rem)}
+.vid3-stage{position:relative;width:min(1100px,92vw);height:min(62svh,620px);display:flex;justify-content:center;align-items:center}
+.vid3 .player{height:100%;aspect-ratio:3/4;width:auto;will-change:transform;z-index:2}
+.vid3 .side{position:absolute;top:50%;left:50%;height:78%;aspect-ratio:3/4;margin:0;border-radius:20px;overflow:hidden;opacity:0;will-change:transform,opacity;z-index:1;
+  transform:translate(-50%,-50%)}
+.vid3 .side video{width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.vid3{height:200vh}.vid3 .side{display:block;height:46%}.vid3-stage{height:min(58svh,560px)}}
+
+/* scenes (transition studio) */
+.scenes{background:var(--void);padding:0 0 clamp(60px,8vw,110px)}
+.sc-stage{position:relative;height:clamp(560px,92svh,860px);overflow:hidden;background:#000;outline:none;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.sc-stage:focus-visible{box-shadow:inset 0 0 0 3px var(--horn)}
+.sc-base,.sc-fx{position:absolute;inset:0}
+.sc-base{background:#000 center/cover no-repeat}
+.sc-fx>div{position:absolute;background-repeat:no-repeat;will-change:transform,clip-path,opacity}
+.sc-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,15,.55),transparent 28%,transparent 45%,rgba(8,5,15,.9));pointer-events:none}
+.sc-top{position:absolute;top:96px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;color:var(--chrome)}
+.sc-count{font:700 .95rem/1 var(--display);font-variant-numeric:tabular-nums}
+.sc-title{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(140px,18vh,190px);font:900 clamp(2.8rem,8.4vw,8rem)/.92 var(--display);letter-spacing:-.055em;text-transform:uppercase;pointer-events:none}
+.sc-title .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.sc-title .ln>span{display:inline-block;will-change:transform}
+.sc-bottom{position:absolute;left:var(--pad);right:var(--pad);bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.sc-desc{max-width:36ch;color:var(--chrome);font-size:1.02rem}
+.sc-ctrl{display:flex;gap:10px;align-items:center}
+.sc-btn{width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;color:var(--chrome);display:grid;place-items:center;
+  background:rgba(19,10,32,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(236,232,244,.25);transition:transform .1s ease-out}
+.sc-btn:active{transform:scale(.94)}
+.sc-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
+.sc-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(236,232,244,.12)}
+.sc-progress i{display:block;height:100%;background:var(--horn);transform-origin:0 50%;transform:scaleX(0)}
+.scenes .gig.next{margin-top:28px}
+@media (max-width:600px){.sc-title{bottom:170px}.sc-bottom{bottom:28px}.sc-desc{font-size:.92rem}}
+
+/* horizontal scroll gallery */
+.hscroll{position:relative;background:var(--void)}
+.hs-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+.hs-head{width:100%;margin-bottom:clamp(16px,3vh,36px)}
+.hs-track{display:flex;align-items:center;gap:clamp(18px,3vw,44px);padding:0 var(--pad);width:max-content;will-change:transform}
+.hs-item{flex:none;margin:0;transform:translateY(calc(var(--y)*1svh));}
+.hs-img{height:calc(var(--h)*1svh);aspect-ratio:3/4;border-radius:22px;overflow:hidden;background:var(--night);box-shadow:0 30px 70px rgba(0,0,0,.5);will-change:transform}
+.hs-item.wide .hs-img{aspect-ratio:4/3}
+.hs-img img{width:118%;max-width:none;height:100%;object-fit:cover;margin-left:-9%;will-change:transform}
+.hs-item figcaption{margin-top:12px;font-size:.9rem;color:var(--ash)}
+.hs-item figcaption b{color:var(--chrome);font-weight:700;margin-right:8px}
+.hs-bar{position:absolute;left:var(--pad);right:var(--pad);bottom:28px;height:2px;background:var(--line)}
+.hs-bar i{display:block;height:100%;background:var(--chrome);transform-origin:0 50%;transform:scaleX(0)}
+@media (max-width:760px){.hs-img{height:calc(var(--h)*.85svh)}}
+
+@media (prefers-reduced-motion:reduce){
+  .hero3 .about,.hero3 .hero-title,.hero3 .genres,.hero3 .hero-actions,.hero3 .hero-media{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .js .trk{opacity:1;transform:none}
+  .vid3{height:auto}.vid3-sticky{position:relative;height:auto;padding:100px 0}
+  .vid3 .side{display:none}
+  .hscroll{height:auto!important}.hs-sticky{position:relative;height:auto;padding:100px 0}.hs-track{overflow-x:auto;width:auto;transform:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -408,7 +531,7 @@ footer{padding:40px 0 30px;overflow:hidden}
 <header class="nav">
   <a class="logo" href="#top" aria-label="AP, inicio"><img src="assets/logo-ap-sm.webp" alt="AP" width="320" height="198"></a>
   <ul>
-    <li><a href="#musica">Música</a></li>
+    <li><a href="#temas">Música</a></li>
     <li><a href="#video">Vídeo</a></li>
     <li><a href="#fechas">Fechas</a></li>
     <li><a href="#carteles">Carteles</a></li>
@@ -421,26 +544,20 @@ footer{padding:40px 0 30px;overflow:hidden}
 <main id="top">
 
 <!-- HERO -->
-<section class="hero">
-  <img class="poster" src="assets/hero-calavera.jpg" alt="">
-  <video id="herovid" autoplay muted loop playsinline preload="auto" poster="assets/hero-calavera.jpg"><source src="assets/hero-calavera.mp4" type="video/mp4"></video>
-  <div class="wrap">
-    <div class="hero-top">
+<section class="hero hero3">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="assets/hero-rayos.jpg" aria-hidden="true"><source src="assets/hero-rayos-bg.mp4" type="video/mp4"></video>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
       <p class="about"><span class="label">(Sobre mí)</span><br>Hard techno desde Tarragona. Bombo fuerte, presión constante y un MashAP nuevo cada viernes a las 20:00.</p>
-    </div>
-    <h1 class="hero-logo"><img id="herologo" src="assets/logo-ap.webp" alt="Adrià AP" width="1000" height="618"></h1>
-    <p class="hero-name">Adrià AP, hard techno artist</p>
-    <div class="hero-meta">
-      <div class="hero-left">
-        <p class="genres">Hard techno, groove, hard bounce, schranz, industrial y hardpsy. Hasta la 240.</p>
+      <h1 class="hero-title"><span>Adrià</span><span>AP</span></h1>
+      <p class="genres">Hard techno, groove, hard bounce, schranz, industrial y hardpsy. Hasta la 240.</p>
+      <div class="hero-actions">
         <button class="sound" id="soundbtn" type="button" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="soundtxt">Activar sonido</span></button>
+        <a class="btn ghost" href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Mi Estrella Blanca, descarga gratis</a>
       </div>
-      <article class="release">
-        <div class="top"><span>Descarga gratis</span><span class="pill">MashAP</span></div>
-        <h3>Mi Estrella Blanca</h3>
-        <p>Hard techno, flamenco y trance en un mismo tema.</p>
-        <a class="btn" href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Escuchar en SoundCloud</a>
-      </article>
+    </div>
+    <div class="hero-media" id="heromedia">
+      <video id="herovid" autoplay muted loop playsinline preload="auto" poster="assets/hero-rayos.jpg"><source src="assets/hero-rayos.mp4" type="video/mp4"></video>
     </div>
   </div>
 </section>
@@ -455,7 +572,6 @@ footer{padding:40px 0 30px;overflow:hidden}
     <div class="pockets">
       <a class="pocket" style="--c:#9B4DFF;--fg:#2A0F5A;--tx:#fff" href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">
         <div class="p-bg"><img src="assets/poster-rayos.webp" alt="" loading="lazy"></div>
-        <img class="p-png" src="assets/logo-ap.webp" alt="" loading="lazy">
         <div class="p-fg">
           <span class="p-num">01</span>
           <svg class="p-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -464,7 +580,6 @@ footer{padding:40px 0 30px;overflow:hidden}
       </a>
       <a class="pocket" style="--c:#ECE8F4;--fg:#D6CFE6;--tx:#130A20" href="https://www.instagram.com/apt.tv_/" target="_blank" rel="noopener">
         <div class="p-bg"><img src="assets/cartel-apttv.webp" alt="" loading="lazy"></div>
-        <img class="p-png" src="assets/logo-ap.webp" alt="" loading="lazy">
         <div class="p-fg">
           <span class="p-num">02</span>
           <svg class="p-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -473,7 +588,6 @@ footer{padding:40px 0 30px;overflow:hidden}
       </a>
       <a class="pocket" style="--c:#E23BD6;--fg:#4A0D45;--tx:#fff" href="https://youtu.be/nF0jhbLRc_k" target="_blank" rel="noopener">
         <div class="p-bg"><img src="assets/feral-frontal.webp" alt="" loading="lazy" style="object-position:50% 20%"></div>
-        <img class="p-png" src="assets/logo-ap.webp" alt="" loading="lazy">
         <div class="p-fg">
           <span class="p-num">03</span>
           <svg class="p-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
@@ -509,37 +623,54 @@ footer{padding:40px 0 30px;overflow:hidden}
 </section>
 
 <!-- ALL MASHAPS -->
-<section class="music">
+<section class="tracksec" id="temas">
   <div class="wrap">
     <div class="head">
       <div><span class="label">(Temas y MashAPs)</span><h2 class="h2">Toda mi<br>música</h2></div>
       <a class="btn ghost" href="https://soundcloud.com/search?q=MashAP" target="_blank" rel="noopener">Abrir SoundCloud</a>
     </div>
-    <article class="row">
-      <h3 class="t">Mi Estrella Blanca<small>Tema propio · descarga gratis</small></h3>
-      <div class="cover"><img src="assets/feral-frontal.webp" alt="" loading="lazy" style="object-position:50% 25%"></div>
-      <p class="d">Hard techno con flamenco y trance. De los que no sabías que se podían mezclar tan bien hasta que lo escuchas.<br><a href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">Descargar gratis</a></p>
-    </article>
-    <article class="row">
-      <h3 class="t">Estoy Llorando Por Ti<small>MashAP · Feid × APT</small></h3>
-      <div class="cover"><img src="assets/feral-lateral.webp" alt="" loading="lazy" style="object-position:50% 30%"></div>
-      <p class="d">Estrenado en directo en Feral Fest, la primera vez que sonaron los MashAP delante de una pista.<br><a href="https://soundcloud.com/search?q=Estoy%20llorando%20por%20ti%20MashAP" target="_blank" rel="noopener">Escuchar</a></p>
-    </article>
-    <article class="row">
-      <h3 class="t">Damiandoscuarenta<small>Mi primer intento a 240</small></h3>
-      <div class="cover"><img src="assets/pista.jpg" alt="" loading="lazy"></div>
-      <p class="d">El primer tema en el que llego a la 240. Velocidad y trance puro.<br><a href="https://soundcloud.com/search?q=damiandoscuarenta" target="_blank" rel="noopener">Escuchar</a></p>
-    </article>
-    <article class="row">
-      <h3 class="t">My Only Girl<small>MashAP</small></h3>
-      <div class="cover"><img src="assets/poster-rayos.webp" alt="" loading="lazy" style="object-position:50% 35%"></div>
-      <p class="d">De los últimos MashAP que han salido. Bombo arriba y estribillo que se canta.<br><a href="https://soundcloud.com/search?q=My%20Only%20Girl%20MashAP" target="_blank" rel="noopener">Escuchar</a></p>
-    </article>
-    <article class="row">
-      <h3 class="t">Look AP Me Now<small>MashAP · sonó en APT TV</small></h3>
-      <div class="cover"><img src="assets/cabina-bn.jpg" alt="" loading="lazy"></div>
-      <p class="d">El track ID que más me preguntasteis después de ser el primer invitado de APT TV.<br><a href="https://soundcloud.com/search?q=Look%20AP%20Me%20Now" target="_blank" rel="noopener">Escuchar</a></p>
-    </article>
+    <ol class="tracks" id="tracks">
+      <li class="trk" data-img="assets/feral-frontal.webp"><a href="https://soundcloud.com/search?q=AP%20Mi%20Estrella%20Blanca" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/feral-frontal.webp" alt="" loading="lazy">
+        <span class="trk-k">Tema propio</span>
+        <span class="trk-t"><span class="roll"><span>Mi Estrella Blanca</span><span aria-hidden="true">Mi Estrella Blanca</span></span></span>
+        <span class="trk-d">Hard techno, flamenco y trance. Descarga gratis.</span>
+      </a></li>
+      <li class="trk" data-img="assets/cartel-llorando.webp"><a href="https://soundcloud.com/search?q=Estoy%20llorando%20por%20ti%20MashAP" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/cartel-llorando.webp" alt="" loading="lazy">
+        <span class="trk-k">MashAP</span>
+        <span class="trk-t"><span class="roll"><span>Estoy Llorando Por Ti</span><span aria-hidden="true">Estoy Llorando Por Ti</span></span></span>
+        <span class="trk-d">Feid × APT. Estrenado en directo en Feral Fest.</span>
+      </a></li>
+      <li class="trk" data-img="assets/cartel-voodoo.webp"><a href="https://soundcloud.com/search?q=Voodoo%204%20Krenon%20MashAP" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/cartel-voodoo.webp" alt="" loading="lazy">
+        <span class="trk-k">MashAP</span>
+        <span class="trk-t"><span class="roll"><span>Voodoo 4 Krenon</span><span aria-hidden="true">Voodoo 4 Krenon</span></span></span>
+        <span class="trk-d">El estreno de Viernes Santo.</span>
+      </a></li>
+      <li class="trk" data-img="assets/poster-rayos.webp"><a href="https://soundcloud.com/search?q=damiandoscuarenta" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/poster-rayos.webp" alt="" loading="lazy">
+        <span class="trk-k">Tema propio</span>
+        <span class="trk-t"><span class="roll"><span>Damiandoscuarenta</span><span aria-hidden="true">Damiandoscuarenta</span></span></span>
+        <span class="trk-d">Su primer intento hasta la 240.</span>
+      </a></li>
+      <li class="trk" data-img="assets/cartel-apttv.webp"><a href="https://soundcloud.com/search?q=Look%20AP%20Me%20Now" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/cartel-apttv.webp" alt="" loading="lazy">
+        <span class="trk-k">MashAP</span>
+        <span class="trk-t"><span class="roll"><span>Look AP Me Now</span><span aria-hidden="true">Look AP Me Now</span></span></span>
+        <span class="trk-d">El track ID que sonó en APT TV.</span>
+      </a></li>
+      <li class="trk" data-img="assets/foto-selfie.webp"><a href="https://soundcloud.com/search?q=My%20Only%20Girl%20MashAP" target="_blank" rel="noopener">
+        <img class="trk-thumb" src="assets/foto-selfie.webp" alt="" loading="lazy">
+        <span class="trk-k">MashAP</span>
+        <span class="trk-t"><span class="roll"><span>My Only Girl</span><span aria-hidden="true">My Only Girl</span></span></span>
+        <span class="trk-d">De los últimos que han salido.</span>
+      </a></li>
+    </ol>
+  </div>
+  <div class="trk-float" id="trkfloat" aria-hidden="true">
+    <span class="trk-disc"></span>
+    <div class="trk-cover"><img id="trkA" alt=""><img id="trkB" alt=""></div>
   </div>
 </section>
 
@@ -559,12 +690,12 @@ footer{padding:40px 0 30px;overflow:hidden}
 </section>
 
 <!-- VIDEO -->
-<section class="vid" id="video">
-  <div class="wrap">
-    <span class="label">(Vídeo)</span>
-    <h2 class="h2">Así suena<br>en directo</h2>
-    <div class="stage">
-      <div class="side l"><video autoplay muted loop playsinline preload="none" poster="assets/hero-calavera.jpg" aria-hidden="true"><source src="assets/hero-calavera.mp4" type="video/mp4"></video></div>
+<section class="vid3" id="video">
+  <div class="vid3-sticky">
+    <div class="vid3-head"><span class="label">(Vídeo)</span><h2 class="h2">Así suena<br>en directo</h2></div>
+    <div class="vid3-stage" id="vid3stage">
+      <div class="side l" id="vsl"><video autoplay muted loop playsinline preload="none" poster="assets/hero-calavera.jpg" aria-hidden="true"><source src="assets/hero-calavera.mp4" type="video/mp4"></video></div>
+      <div class="side r" id="vsr"><video autoplay muted loop playsinline preload="none" poster="assets/pista.jpg" aria-hidden="true"><source src="assets/pista.mp4" type="video/mp4"></video></div>
       <div class="player" id="player">
         <video id="mainvid" playsinline preload="metadata" poster="assets/directo-history.jpg"><source src="assets/directo-history.mp4" type="video/mp4"></video>
         <button type="button" aria-label="Reproducir vídeo con sonido">
@@ -572,29 +703,27 @@ footer{padding:40px 0 30px;overflow:hidden}
           <span class="cap">We Love History<small>Un minuto de pista, con sonido</small></span>
         </button>
       </div>
-      <div class="side r"><video autoplay muted loop playsinline preload="none" poster="assets/pista.jpg" aria-hidden="true"><source src="assets/pista.mp4" type="video/mp4"></video></div>
     </div>
   </div>
 </section>
 
 <!-- DATES -->
-<section class="dates" id="fechas">
-  <div class="arcwrap">
-    <div class="arc-panel">
-      <img class="arc-img on" id="arcimgA" src="assets/directo-history.jpg" alt="">
-      <img class="arc-img" id="arcimgB" src="assets/directo-history.jpg" alt="">
-      <div class="arc-copy">
-        <span class="label">(Fechas)</span>
-        <h2 class="arc-title">Cabinas.</h2>
+<section class="scenes" id="fechas">
+  <div class="sc-stage" id="scstage" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Cabinas donde ha pinchado AP. Usa las flechas o desliza para cambiar.">
+    <div class="sc-base" id="scbase"></div>
+    <div class="sc-fx" id="scfx" aria-hidden="true"></div>
+    <div class="sc-shade" aria-hidden="true"></div>
+    <div class="sc-top"><span class="label">(Cabinas)</span><span class="sc-count" id="sccount">1 / 7</span></div>
+    <h2 class="sc-title" id="sctitle" aria-live="polite"></h2>
+    <div class="sc-bottom">
+      <p class="sc-desc" id="scdesc"></p>
+      <div class="sc-ctrl">
+        <button class="sc-btn" type="button" data-dir="-1" aria-label="Cabina anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="sc-btn" type="button" data-dir="1" aria-label="Cabina siguiente"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        <a class="btn" id="sclink" href="#" target="_blank" rel="noopener">Ver evento</a>
       </div>
     </div>
-    <div class="arc" id="arc" tabindex="0" aria-label="Sitios donde ha pinchado. Arrastra, usa la rueda o las flechas para moverte.">
-      <svg class="arc-ring" id="arcring" aria-hidden="true"></svg>
-      <a class="arc-cta" id="arccta" href="#" target="_blank" rel="noopener">Ver evento</a>
-      <button class="arc-nav up" type="button" data-dir="-1" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M17 17L7 7M7 15V7h8"/></svg></button>
-      <button class="arc-nav down" type="button" data-dir="1" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M17 7L7 17M7 9v8h8"/></svg></button>
-      <ul id="arclist"></ul>
-    </div>
+    <div class="sc-progress" aria-hidden="true"><i id="scbar"></i></div>
   </div>
   <div class="wrap">
     <div class="gig next"><p class="when">Tu fecha</p><h3>Tu sala o tu festival</h3><p class="where">Cuéntame la fecha y la ciudad y te respondo.</p><a class="btn" href="#bookings">Pedir fecha</a></div>
@@ -623,17 +752,20 @@ footer{padding:40px 0 30px;overflow:hidden}
 </section>
 
 <!-- PHOTOS -->
-<section class="photos">
-  <div class="wrap">
-    <span class="label">(Fotos)</span>
-    <h2 class="h2">Desde la cabina</h2>
-    <div class="gallery">
-      <figure class="g1"><img src="assets/feral-frontal.webp" alt="AP de frente tras la mesa Pioneer en Feral Fest" loading="lazy"><figcaption><b>Feral Fest</b>Detrás de la Pioneer</figcaption></figure>
-      <figure class="g2"><img src="assets/foto-selfie.webp" alt="AP con abrigo negro y los tatuajes del cuello" loading="lazy" style="object-position:50% 20%"><figcaption><b>AP</b>Sin filtro</figcaption></figure>
-      <figure class="g3"><img src="assets/bcn-bn.webp" alt="AP en blanco y negro con el brazo en alto" loading="lazy"><figcaption><b>Barcelona</b>Brazo arriba</figcaption></figure>
-      <figure class="g4"><img src="assets/directo-history.jpg" alt="Pista llena bajo luces rojas en We Love History" loading="lazy"><figcaption><b>We Love History</b>La pista</figcaption></figure>
-      <figure class="g5"><img src="assets/foto-sudadera.webp" alt="Sudadera negra con el sello de AP en la espalda" loading="lazy" style="object-position:50% 40%"><figcaption><b>Merch</b>Sudadera AP</figcaption></figure>
+<section class="hscroll" id="fotos">
+  <div class="hs-sticky">
+    <div class="wrap hs-head"><span class="label">(Fotos)</span><h2 class="h2">Desde la cabina</h2></div>
+    <div class="hs-track" id="hstrack">
+      <figure class="hs-item" style="--h:64;--y:2"><div class="hs-img"><img src="assets/feral-frontal.webp" alt="AP de frente tras la mesa Pioneer en Feral Fest" loading="lazy"></div><figcaption><b>Feral Fest</b>Detrás de la Pioneer</figcaption></figure>
+      <figure class="hs-item" style="--h:46;--y:-8"><div class="hs-img"><img src="assets/foto-selfie.webp" alt="AP con abrigo negro y los tatuajes del cuello" loading="lazy"></div><figcaption><b>AP</b>Sin filtro</figcaption></figure>
+      <figure class="hs-item" style="--h:58;--y:6"><div class="hs-img"><img src="assets/bcn-bn.webp" alt="AP en blanco y negro con el brazo en alto" loading="lazy"></div><figcaption><b>Barcelona</b>Brazo arriba</figcaption></figure>
+      <figure class="hs-item wide" style="--h:44;--y:-4"><div class="hs-img"><img src="assets/directo-history.jpg" alt="Pista llena bajo luces rojas en We Love History" loading="lazy"></div><figcaption><b>We Love History</b>La pista</figcaption></figure>
+      <figure class="hs-item" style="--h:62;--y:4"><div class="hs-img"><img src="assets/feral-lateral.webp" alt="AP de perfil mezclando con sombrero de leopardo" loading="lazy"></div><figcaption><b>Feral Fest</b>En el mixer</figcaption></figure>
+      <figure class="hs-item" style="--h:48;--y:-6"><div class="hs-img"><img src="assets/polaroid.webp" alt="Retrato Polaroid de AP con sombrero negro" loading="lazy"></div><figcaption><b>Polaroid</b>Antes de salir</figcaption></figure>
+      <figure class="hs-item" style="--h:56;--y:5"><div class="hs-img"><img src="assets/foto-sudadera.webp" alt="Sudadera negra con el sello de AP en la espalda" loading="lazy"></div><figcaption><b>Merch</b>Sudadera AP</figcaption></figure>
+      <figure class="hs-item wide" style="--h:46;--y:-2"><div class="hs-img"><img src="assets/cabina-bn.jpg" alt="AP en cabina en blanco y negro" loading="lazy"></div><figcaption><b>Cabina</b>En blanco y negro</figcaption></figure>
     </div>
+    <div class="hs-bar" aria-hidden="true"><i id="hsbar"></i></div>
   </div>
 </section>
 
@@ -837,11 +969,6 @@ sb.addEventListener('click',()=>{
 });
 // silence hero when the live video plays
 document.getElementById('mainvid').addEventListener('play',()=>{if(!hv.muted)sb.click()});
-const hero=document.querySelector('.hero'),hl=document.getElementById('herologo');
-if(FINE&&!RM){hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();
-  hl.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*14+'deg');hl.style.setProperty('--rx',-((e.clientY-r.top)/r.height-.5)*10+'deg')});
-  hero.addEventListener('pointerleave',()=>{hl.style.setProperty('--ry','0deg');hl.style.setProperty('--rx','0deg')})}
-
 /* pocket cards: tilt with pointer; on touch, open when centred on screen */
 document.querySelectorAll('.pocket').forEach(p=>{
   if(FINE&&!RM){
@@ -852,57 +979,6 @@ document.querySelectorAll('.pocket').forEach(p=>{
 });
 if(!FINE){const po=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('open',e.isIntersecting)),{rootMargin:'-35% 0px -35% 0px'});
   document.querySelectorAll('.pocket').forEach(p=>po.observe(p))}
-
-/* arc gallery (fechas) */
-(()=>{
-  const data=[
-    {t:'Hard Experiences × Reaktor',s:'Festival de 12 horas, set 18:00–19:30',img:'assets/directo-history.jpg',url:'https://www.instagram.com/adriaap_/p/DekNqEmovEX/'},
-    {t:'Feral: The Awakening',s:'Sala Zero, Tarragona. 24.04.26',img:'assets/feral-frontal.webp',url:'https://www.instagram.com/feral.fest/'},
-    {t:'We Love Techno Fraternity',s:'Alcover, Tarragona. 30.05.26',img:'assets/pista.jpg',url:'https://www.instagram.com/adriaap_/'},
-    {t:'We Love History',s:'Sala Zero, Tarragona',img:'assets/hero-calavera.jpg',url:'https://www.instagram.com/welovehistoryy/'},
-    {t:'Belleville After Oldschool',s:'Barcelona. 20 sep, 07:30–08:30',img:'assets/bcn-bn.webp',url:'https://www.instagram.com/bellevilleafterbcn/'},
-    {t:'APT TV',s:'Primer invitado del canal',img:'assets/cabina-bn.jpg',url:'https://www.instagram.com/apt.tv_/'},
-    {t:'Revés',s:'Donde empezó, hace casi dos años',img:'assets/polaroid.webp',url:'https://www.instagram.com/adriaap_/'}
-  ];
-  const arc=document.getElementById('arc'),list=document.getElementById('arclist'),ring=document.getElementById('arcring'),
-        cta=document.getElementById('arccta'),A=document.getElementById('arcimgA'),B=document.getElementById('arcimgB');
-  const mq=matchMedia('(max-width:860px)');
-  const STEP=.26; let R=300,cy=300,pos=0,active=-1,front=A;
-  list.innerHTML=data.map((d,i)=>`<li><button type="button" data-i="${i}"><b>${d.t}</b><small>${d.s}</small></button></li>`).join('');
-  const lis=[...list.children];
-  function geom(){const r=arc.getBoundingClientRect();cy=r.height/2;R=Math.min(r.width*.62,r.height*.62,340);
-    ring.innerHTML=`<circle cx="0" cy="${cy}" r="${R}"/><circle cx="0" cy="${cy}" r="${R*.8}"/><circle class="dot" cx="${R}" cy="${cy}" r="4"/>`}
-  function setActive(i){if(i===active)return;active=i;lis.forEach((l,j)=>l.classList.toggle('active',j===i));
-    const d=data[i];cta.href=d.url;cta.setAttribute('aria-label','Ver evento: '+d.t);
-    const back=front===A?B:A;back.src=d.img;back.alt=d.t;back.classList.add('on');front.classList.remove('on');front=back}
-  function render(p){pos=p;setActive(clamp(Math.round(p),0,data.length-1));
-    if(mq.matches)return;
-    lis.forEach((l,i)=>{const th=(i-p)*STEP,x=Math.cos(th)*R+18,y=cy+Math.sin(th)*R,a=Math.abs(th);
-      l.style.transform=`translate(${x}px,${y}px) translateY(-50%) scale(${1-a*.18})`;l.style.opacity=Math.max(0,1-a/1.05);
-      l.style.pointerEvents=a>.9?'none':'auto'})}
-  const sp=makeSpring(render,.5);
-  function go(i,v){sp.to(clamp(i,0,data.length-1),v)}
-  list.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||moved)return;go(+b.dataset.i)});
-  arc.querySelectorAll('.arc-nav').forEach(b=>b.addEventListener('click',()=>go(Math.round(pos)+ +b.dataset.dir)));
-  arc.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(Math.round(pos)+1)}
-    if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(Math.round(pos)-1)}});
-  // drag
-  let drag=false,moved=false,sy=0,sp0=0;const tr=tracker();
-  arc.addEventListener('pointerdown',e=>{if(mq.matches||e.target.closest('.arc-cta,.arc-nav'))return;e.preventDefault();drag=true;moved=false;sy=e.clientY;sp0=sp.value;sp.stop();tr.reset(e.clientY,e.timeStamp)});
-  arc.addEventListener('pointermove',e=>{if(!drag)return;const dy=e.clientY-sy;if(Math.abs(dy)>6&&!moved){moved=true;arc.setPointerCapture(e.pointerId)}
-    if(!moved)return;tr.push(e.clientY,e.timeStamp);let p=sp0-dy/(R*STEP);const max=data.length-1;
-    if(p<0)p=-rubber(-p,3);else if(p>max)p=max+rubber(p-max,3);sp.set(p)});
-  const end=()=>{if(!drag)return;drag=false;if(!moved)return;const v=-tr.vel()/(R*STEP);
-    go(Math.round(sp.value+project(v*R*STEP,.995)/(R*STEP)),v);setTimeout(()=>moved=false,0)};
-  arc.addEventListener('pointerup',end);arc.addEventListener('pointercancel',end);
-  // wheel: move through the list, release the page at the ends
-  let wacc=0,wt=0;
-  arc.addEventListener('wheel',e=>{if(mq.matches)return;const dir=Math.sign(e.deltaY),cur=Math.round(sp.value);
-    if((dir<0&&cur<=0)||(dir>0&&cur>=data.length-1))return;e.preventDefault();wacc+=e.deltaY;clearTimeout(wt);
-    if(Math.abs(wacc)>40){go(cur+Math.sign(wacc));wacc=0}wt=setTimeout(()=>wacc=0,160)},{passive:false});
-  addEventListener('resize',()=>{geom();render(pos)});mq.addEventListener('change',()=>{lis.forEach(l=>{l.style.transform='';l.style.opacity=''});geom();render(pos)});
-  geom();sp.set(0);
-})();
 
 /* coverflow posters */
 (()=>{
@@ -1018,6 +1094,123 @@ if(!FINE){const po=new IntersectionObserver(es=>es.forEach(e=>e.target.classList
   const io=new IntersectionObserver(es=>es.forEach(en=>{running=en.isIntersecting;if(running)requestAnimationFrame(loop)}),{threshold:.05});
   addEventListener('resize',()=>{const old=ax;layout();const dx=ax-old;[...pts,cA,cB].forEach(p=>{p.x+=dx;p.px+=dx})});
   reset();io.observe(st);
+})();
+
+/* ===== v3 interactions ===== */
+// hero media tilt
+(()=>{const hm=document.getElementById('heromedia'),h=document.querySelector('.hero3');
+  setTimeout(()=>hm.classList.add('settled'),1600);
+  if(FINE&&!RM){h.addEventListener('pointermove',e=>{const r=h.getBoundingClientRect();
+    hm.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*12+'deg');hm.style.setProperty('--rx',-((e.clientY-r.top)/r.height-.5)*8+'deg')});
+    h.addEventListener('pointerleave',()=>{hm.style.setProperty('--ry','0deg');hm.style.setProperty('--rx','0deg')})}
+})();
+
+// tracklist: reveal + floating cover that follows the pointer
+(()=>{const list=document.getElementById('tracks'),fl=document.getElementById('trkfloat'),A=document.getElementById('trkA'),B=document.getElementById('trkB');
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){list.classList.add('in');o.disconnect()}}),{threshold:.15}).observe(list);
+  if(!FINE)return;
+  let tx=0,ty=0,x=0,y=0,vx=0,vy=0,rot=0,raf=0,front=A,cur='';
+  const k=(2*Math.PI/.38)**2,c=2*Math.sqrt(k);let last=0;
+  function tick(now){const dt=Math.min(.032,(now-last)/1000);last=now;
+    const ax=-k*(x-tx)-c*vx,ay=-k*(y-ty)-c*vy;vx+=ax*dt;vy+=ay*dt;x+=vx*dt;y+=vy*dt;
+    rot+=(clamp(vx/60,-14,14)-rot)*.2;
+    fl.style.transform=`translate(${x-140}px,${y-140}px) rotate(${rot}deg)`;raf=requestAnimationFrame(tick)}
+  list.addEventListener('pointerenter',e=>{x=tx=e.clientX;y=ty=e.clientY;vx=vy=0;fl.classList.add('on');last=performance.now();if(!raf)raf=requestAnimationFrame(tick)});
+  list.addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;const li=e.target.closest('.trk');if(li&&li.dataset.img!==cur){cur=li.dataset.img;
+    const back=front===A?B:A;back.src=cur;back.classList.add('on');front.classList.remove('on');front=back}});
+  list.addEventListener('pointerleave',()=>{fl.classList.remove('on');setTimeout(()=>{if(!fl.classList.contains('on')){cancelAnimationFrame(raf);raf=0}},300)});
+  addEventListener('scroll',()=>{if(fl.classList.contains('on')&&!list.matches(':hover'))fl.classList.remove('on')},{passive:true});
+})();
+
+// scroll-driven sections: video grows in, photos slide sideways
+(()=>{
+  const vs=document.getElementById('video'),pl=document.getElementById('player'),sl=document.getElementById('vsl'),sr=document.getElementById('vsr'),vh=vs.querySelector('.vid3-head');
+  const hs=document.querySelector('.hscroll'),track=document.getElementById('hstrack'),bar=document.getElementById('hsbar'),items=[...track.children];
+  const ease=t=>1-Math.pow(1-t,3);
+  function sizeH(){if(RM)return;hs.style.height=(track.scrollWidth-innerWidth+innerHeight)+'px'}
+  function frame(){
+    if(!RM){
+      // video
+      const r=vs.getBoundingClientRect(),span=r.height-innerHeight,p=clamp(-r.top/span,0,1),e=ease(clamp(p/.55,0,1));
+      pl.style.transform=`translateY(${(1-e)*30}svh) scale(${.42+.58*e}) rotate(${(1-e)*-9}deg)`;pl.style.opacity=.35+.65*e;
+      const sw=pl.getBoundingClientRect().width,off=(sw*.5+16+ (sw*.78*.75)*.5)*e;
+      const e2=ease(clamp((p-.25)/.5,0,1)),o2=Math.min(1,(sw*.5+20)/1)*0;
+      sl.style.transform=`translate(-50%,-50%) translateX(${-off*e2/e||0}px) rotate(${-7*e2}deg)`;sr.style.transform=`translate(-50%,-50%) translateX(${off*e2/e||0}px) rotate(${7*e2}deg)`;
+      sl.style.opacity=sr.style.opacity=e2;
+      vh.style.transform=`translateY(${(1-e)*20}px)`;vh.style.opacity=.4+.6*e;
+      // photos
+      const hr=hs.getBoundingClientRect(),hspan=hr.height-innerHeight,hp=clamp(-hr.top/(hspan||1),0,1),max=track.scrollWidth-innerWidth;
+      track.style.transform=`translateX(${-hp*max}px)`;bar.style.transform=`scaleX(${hp})`;
+      const cx=innerWidth/2;
+      items.forEach(it=>{const b=it.getBoundingClientRect();if(b.right<-200||b.left>innerWidth+200)return;
+        const d=clamp((b.left+b.width/2-cx)/innerWidth,-1,1);
+        it.firstElementChild.style.transform=`rotate(${d*5}deg) scale(${1-Math.abs(d)*.08})`;
+        it.querySelector('img').style.transform=`translateX(${-d*7}%)`});
+    }
+    requestAnimationFrame(frame);
+  }
+  sizeH();addEventListener('resize',sizeH);addEventListener('load',sizeH);requestAnimationFrame(frame);
+})();
+
+// scenes: full-bleed venues with page-transition styles
+(()=>{
+  const data=[
+    {l:['Hard','Experiences'],s:'Hard Experiences × Reaktor Group. Su primer festival de 12 horas, set de 18:00 a 19:30.',img:'assets/directo-history.jpg',url:'https://www.instagram.com/adriaap_/p/DekNqEmovEX/'},
+    {l:['Feral:','The Awakening'],s:'Sala Zero, Tarragona. Viernes 24.04.26, la primera vez que sonaron los MashAP en directo.',img:'assets/feral-frontal.webp',url:'https://www.instagram.com/feral.fest/'},
+    {l:['We Love','Techno'],s:'Fraternity. Alcover, Tarragona. 30 de mayo, de 18 h a cierre.',img:'assets/pista.jpg',url:'https://www.instagram.com/adriaap_/'},
+    {l:['We Love','History'],s:'Sala Zero, Tarragona. Nada más que máquinas, bombo y conexión.',img:'assets/hero-calavera.jpg',url:'https://www.instagram.com/welovehistoryy/'},
+    {l:['Belleville','After'],s:'After Oldschool en Barcelona. 20 de septiembre, de 07:30 a 08:30, hardtek y bounce.',img:'assets/bcn-bn.webp',url:'https://www.instagram.com/bellevilleafterbcn/'},
+    {l:['APT','TV'],s:'Primer invitado del canal que junta techno y tatuaje.',img:'assets/polaroid.webp',url:'https://www.instagram.com/apt.tv_/'},
+    {l:['Revés'],s:'Donde empezó a pinchar, hace casi dos años.',img:'assets/cabina-bn.jpg',url:'https://www.instagram.com/adriaap_/'}
+  ];
+  data.forEach(d=>{const i=new Image();i.src=d.img});
+  const st=document.getElementById('scstage'),base=document.getElementById('scbase'),fx=document.getElementById('scfx'),
+        title=document.getElementById('sctitle'),desc=document.getElementById('scdesc'),cnt=document.getElementById('sccount'),
+        link=document.getElementById('sclink'),bar=document.getElementById('scbar');
+  const STY=['strips','tiles','circle','curtain','diagonal','split'];let idx=0,sty=0,anims=[],inView=false,hover=false,timer=0,barAnim=null;
+  const EASE='cubic-bezier(.7,0,.2,1)';
+  function piece(x,y,w,h,img,W,H){const d=document.createElement('div');Object.assign(d.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',
+    backgroundImage:`url("${img}")`,backgroundSize:cover(img,W,H),backgroundPosition:`${-x+offX}px ${-y+offY}px`});fx.appendChild(d);return d}
+  // emulate background-size:cover in px so pieces line up
+  let offX=0,offY=0;const dims={};
+  function cover(img,W,H){const n=dims[img];if(!n){offX=offY=0;return `${W}px ${H}px`}const s=Math.max(W/n[0],H/n[1]),w=n[0]*s,h=n[1]*s;offX=(W-w)/2;offY=(H-h)/2;return `${w}px ${h}px`}
+  data.forEach(d=>{const i=new Image();i.onload=()=>dims[d.img]=[i.naturalWidth,i.naturalHeight];i.src=d.img});
+  function setText(d,dir,animate){
+    const old=[...title.querySelectorAll('.ln>span')];
+    const html=d.l.map(t=>`<span class="ln"><span>${t}</span></span>`).join('');
+    const run=()=>{title.innerHTML=html;title.setAttribute('aria-label',d.l.join(' '));
+      if(animate&&!RM)title.querySelectorAll('.ln>span').forEach((s,i)=>s.animate([{transform:`translateY(${dir>0?110:-110}%)`},{transform:'none'}],{duration:800,delay:120+i*90,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}))};
+    if(animate&&!RM&&old.length){old.forEach((s,i)=>s.animate([{transform:'none'},{transform:`translateY(${dir>0?-110:110}%)`}],{duration:420,delay:i*50,easing:'cubic-bezier(.7,0,.84,0)',fill:'forwards'}));setTimeout(run,380)}else run();
+    desc.textContent=d.s;cnt.textContent=`${data.indexOf(d)+1} / ${data.length}`;link.href=d.url;link.setAttribute('aria-label','Ver evento: '+d.l.join(' '));
+    if(animate&&!RM)desc.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:700,delay:300,easing:'ease',fill:'backwards'});
+  }
+  function go(n,dir){
+    n=(n+data.length)%data.length;if(n===idx)return;
+    anims.forEach(a=>a.finish());anims=[];fx.innerHTML='';
+    const d=data[n],W=st.clientWidth,H=st.clientHeight,img=d.img;idx=n;setText(d,dir,true);
+    if(RM){base.style.backgroundImage=`url("${img}")`;restart();return}
+    const style=STY[sty++%STY.length],add=(el,kf,o)=>anims.push(el.animate(kf,Object.assign({duration:800,easing:EASE,fill:'both'},o)));
+    if(style==='strips'){const n2=8,w=Math.ceil(W/n2);for(let i=0;i<n2;i++)add(piece(i*w,0,w+1,H,img,W,H),[{transform:`translateY(${dir>0?100:-100}%)`},{transform:'none'}],{delay:i*55})}
+    else if(style==='tiles'){const cols=W<700?4:7,rows=W<700?6:4,w=Math.ceil(W/cols),h=Math.ceil(H/rows);
+      for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){const dist=dir>0?c+r:(cols-c)+r;add(piece(c*w,r*h,w+1,h+1,img,W,H),[{transform:'scale(0)',opacity:0,borderRadius:'50%'},{transform:'none',opacity:1,borderRadius:'0'}],{duration:620,delay:dist*45})}}
+    else if(style==='circle'){const p=piece(0,0,W,H,img,W,H),ox=dir>0?'85%':'15%';add(p,[{clipPath:`circle(0% at ${ox} 70%)`},{clipPath:`circle(150% at ${ox} 70%)`}],{duration:1000})}
+    else if(style==='curtain'){const w=Math.ceil(W/2);add(piece(0,0,w,H,img,W,H),[{transform:'translateX(-100%)'},{transform:'none'}],{duration:900});add(piece(w,0,W-w,H,img,W,H),[{transform:'translateX(100%)'},{transform:'none'}],{duration:900})}
+    else if(style==='diagonal'){const n2=6,w=Math.ceil(W/n2);for(let i=0;i<n2;i++){const p=piece(i*w,0,w+1,H,img,W,H);
+      add(p,[{clipPath:'polygon(0 0,0 0,0 100%,0 100%)'},{clipPath:'polygon(0 0,100% 0,100% 100%,0 100%)'}],{delay:(dir>0?i:n2-1-i)*70,duration:700})}}
+    else{const n2=5,h=Math.ceil(H/n2);for(let i=0;i<n2;i++)add(piece(0,i*h,W,h+1,img,W,H),[{transform:`translateX(${i%2?100:-100}%)`},{transform:'none'}],{delay:i*60})}
+    Promise.all(anims.map(a=>a.finished)).then(()=>{base.style.backgroundImage=`url("${img}")`;fx.innerHTML='';anims=[]}).catch(()=>{});
+    restart();
+  }
+  function restart(){clearTimeout(timer);if(barAnim)barAnim.cancel();if(RM||!inView||hover)return;
+    barAnim=bar.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:6000,easing:'linear',fill:'forwards'});
+    timer=setTimeout(()=>go(idx+1,1),6000)}
+  st.querySelectorAll('.sc-btn').forEach(b=>b.addEventListener('click',()=>go(idx+ +b.dataset.dir,+b.dataset.dir)));
+  st.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(idx+1,1)}if(e.key==='ArrowLeft'){e.preventDefault();go(idx-1,-1)}});
+  st.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;restart()}});st.addEventListener('pointerleave',()=>{hover=false;restart()});
+  let sx=null;st.addEventListener('pointerdown',e=>{if(e.target.closest('a,button'))return;sx=e.clientX});
+  st.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>50)go(idx+(dx<0?1:-1),dx<0?1:-1)});
+  new IntersectionObserver(es=>es.forEach(e=>{inView=e.isIntersecting;restart()}),{threshold:.4}).observe(st);
+  base.style.backgroundImage=`url("${data[0].img}")`;setText(data[0],1,false);
 })();
 
 /* reveal each section heading once */
